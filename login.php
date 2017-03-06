@@ -28,7 +28,7 @@ if ($_SESSION ['authenticated'] == 1) {
     </style>
     <body>
 
-        <header>
+        <header> 
 			<div id="wrapper" style="overflow:hidden;">
 				<img src="dist/img/unnamed.png" class="logo"/>
 				

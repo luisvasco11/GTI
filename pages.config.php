@@ -2,17 +2,19 @@
 
 $_PAGE_PERMISSIONS = array(
 	"1" => array(
-		
+		"005" => false,
+		"006" => false,
 	),
 	"2" => array(
-		"011" => false
+		"011" => false,
+		"010" => false,
 	),
 	"3" => array(
 		
 	)
 );
 
-// Pagina Actual : 011 
+// Pagina Actual : 014
 
 $_PAGE_CONFIG = array(
 		//000 siempre es la home
@@ -37,46 +39,55 @@ $_PAGE_CONFIG = array(
 						"1" => "005",
 						"2" => "006",
 						"3" => "010",
-						"4" => "011"
+						"4" => "011",
+						"4" => "014"
 				)
 		),
-		
-		"005" => array(
-				"show" => true,
-				"isSubmenu" => true,
-				"big" => "Bitacora de operacion",
-				"small" => "Actividades por demanda",
-				"menu" => "Actividades por demanda",
-				"link" => 'pages/bitacora_operacion/registro_demanda/body.php',
-				"menu_css_class" => "fa-pencil-square-o"
-		),
-		"006" => array(
-				"show" => true,
-				"isSubmenu" => true,
-				"big" => "Bitacora de operacion",
-				"small" => "Actividades del mes",
-				"menu" => "Actividades del mes",
-				"link" => 'pages/bitacora_operacion/actividades_mes/body.php',
-				"menu_css_class" => "fa-list"
-		),
-		"010" => array(
-				"show" => true,
-				"isSubmenu" => true,
-				"big" => "Bitacora de operacion",
-				"small" => "Pendientes aprobacion",
-				"menu" => "Pendientes aprobacion",
-				"link" => 'pages/bitacora_operacion/actividades_pendientes/body.php',
-				"menu_css_class" => "fa-edit"
-		),
-		"011" => array(
-				"show" => true,
-				"isSubmenu" => true,
-				"big" => "Bitacora de operacion",
-				"small" => "Asignacion de contratos",
-				"menu" => "Asignacion de contratos",
-				"link" => 'pages/bitacora_operacion/asignacion_contratos/body.php',
-				"menu_css_class" => "fa-edit"
-		),
+				"005" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Bitacora de operacion",
+						"small" => "Actividades por demanda",
+						"menu" => "Actividades por demanda",
+						"link" => 'pages/bitacora_operacion/registro_demanda/body.php',
+						"menu_css_class" => "fa-pencil-square-o"
+				),
+				"006" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Bitacora de operacion",
+						"small" => "Actividades del mes",
+						"menu" => "Actividades del mes",
+						"link" => 'pages/bitacora_operacion/actividades_mes/body.php',
+						"menu_css_class" => "fa-list"
+				),
+				"010" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Bitacora de operacion",
+						"small" => "Pendientes aprobacion",
+						"menu" => "Pendientes aprobacion",
+						"link" => 'pages/bitacora_operacion/actividades_pendientes/body.php',
+						"menu_css_class" => "fa-edit"
+				),
+				"011" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Bitacora de operacion",
+						"small" => "Asignacion de contratos",
+						"menu" => "Asignacion de contratos",
+						"link" => 'pages/bitacora_operacion/asignacion_contratos/body.php',
+						"menu_css_class" => "fa-edit"
+				),
+				"014" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Bitacora de operacion",
+						"small" => "Registro de Ausentismo",
+						"menu" => "Registro de Ausentismo",
+						"link" => 'pages/bitacora_operacion/registro_ausentismo/body.php',
+						"menu_css_class" => "fa-plane"
+				),
 		"012" => array(
 				"show" => true,
 				"isSubmenu" => false,
@@ -86,27 +97,37 @@ $_PAGE_CONFIG = array(
 				"menu" => "Gestion de eventos",
 				"submenu" => array(
 						"1" => "013",
-						"2" => "014"
 				)
 		),
-		"013" => array(
+				"013" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Gestion de eventos",
+						"small" => "Nuevo evento",
+						"menu" => "Nuevo evento",
+						"link" => 'pages/gestion_eventos/nuevo_evento/body.php',
+						"menu_css_class" => "fa-plus"
+				),
+		"015" => array(
 				"show" => true,
-				"isSubmenu" => true,
-				"big" => "Gestion de eventos",
-				"small" => "Nuevo evento",
-				"menu" => "Nuevo evento",
-				"link" => 'pages/nuevo_evento/body.php',
-				"menu_css_class" => "fa-plus"
+				"isSubmenu" => false,
+				"big" => "GTI",
+				"menu_css_class" => "fa-info",
+				"small" => "Gestion de configuracion",
+				"menu" => "Gestion de configuracion",
+				"submenu" => array(
+						"1" => "016",
+				)
 		),
-		"014" => array(
-				"show" => true,
-				"isSubmenu" => true,
-				"big" => "Gestion de eventos",
-				"small" => "Nuevo evento 2",
-				"menu" => "Nuevo evento 2",
-				"link" => 'pages/nuevo_evento/body.php',
-				"menu_css_class" => "fa-plus"
-		),
+				"016" => array(
+						"show" => true,
+						"isSubmenu" => true,
+						"big" => "Gestion de configuracion",
+						"small" => "Editar CIs",
+						"menu" => "Editar CIs",
+						"link" => 'pages/gestion_configuracion/editar_cis/body.php',
+						"menu_css_class" => "fa-pencil-square-o"
+				),
 		"007" => array(
 				"show" => true,
 				"isSubmenu" => false,
@@ -116,7 +137,6 @@ $_PAGE_CONFIG = array(
 				"link" => 'pages/cambiar_contrasena/body.php',
 				"menu_css_class" => "fa-key"
 		),
-		
 		"001" => array(
 				"show" => true,
 				"isSubmenu" => false,
@@ -147,8 +167,6 @@ $_PAGE_CONFIG = array(
 				"menu_css_class" => "fa-file-pdf-o",
 				"link" => "pages/reportes/productividad/body.php"
 		),
-		
-		
 		"002" => array(
 			"show" => true,
 			"isSubmenu" => false, 
@@ -158,7 +176,6 @@ $_PAGE_CONFIG = array(
 			"menu_css_class" => "fa-envelope",
 			"link" => 'pages/sugerencias/body.php'
 		),
-		
 		"004" => array(
 				"show" => false,
 				"isSubmenu" => false,
@@ -166,7 +183,6 @@ $_PAGE_CONFIG = array(
 				"small" => "Registro actividad",
 				"link" => 'pages/bitacora_operacion/registro/body.php'
 		),
-
 		"500" => array(
 				"show" => false,
 				"link" => 'pages/error/500.php'

@@ -62,7 +62,7 @@ for($i = 1; $i < ($numFilas + 1); $i ++) {
 				<i class="fa fa-users" aria-hidden="true"></i>
 			</div>
 			<div class="content">
-				<div class="text">N° Analistas</div><br>
+				<div class="text">N° Colaboradores</div><br>
 				<div class="number">
                     <?php	
 						while ( $row = $numanalista->fetch_array ( MYSQLI_NUM ) ) {

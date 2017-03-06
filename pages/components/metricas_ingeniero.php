@@ -92,6 +92,7 @@ $productividad = $wish->conexion->query ( $query );
 			<div class="icon bg-red">
 				<i class="fa fa-clock-o" aria-hidden="true"></i>
 			</div>
+			<a href="index.php?page=006"> 
 			<div class="content">
 				<div class="text">Actividades del mes</div><br>
 				<div class="number">
@@ -101,8 +102,8 @@ $productividad = $wish->conexion->query ( $query );
 					}
 					?></span>
 				</div>
-
 			</div>
+			</a>
 		</div>
 
 	</div>

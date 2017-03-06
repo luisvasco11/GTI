@@ -34,3 +34,8 @@ ALTER TABLE `bitacora`.`registro_actividad` CHANGE COLUMN `id_contrato` `id_cont
 ALTER TABLE `bitacora`.`usuario` ADD COLUMN `fecha_control` DATE NULL AFTER `habilidades`;
 
 -- update usuario set fecha_control = "<fecha de control>"; aplicar como fecha de control
+
+ALTER TABLE `bitacora`.`registro_actividad` 
+DROP FOREIGN KEY `contratoFK`;
+
+-- Carlos lopez 06/03/2017 - aplicado

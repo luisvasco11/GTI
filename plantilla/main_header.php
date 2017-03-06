@@ -20,7 +20,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/avatar5.png" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $user_name;?></span>
+              <span class="hidden-xs"><?php echo $userinfo->user_name;?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -28,7 +28,7 @@
                 <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $user_name;?>
+                  <?php echo $userinfo->user_name;?>
                   <small></small>
                 </p>
               </li>

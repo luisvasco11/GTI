@@ -43,6 +43,7 @@ class conexion  {
         $lider_res = $this->getLiderByUserID($id);
         $lider_arr = mysqli_fetch_array($lider_res);
         $lider_id = $lider_arr["lider"];
+        $area = $this->getAreaByUserId($id);
         
        // $lider = mysqli_fetch_object($q_lider_id);
         //$lider_id =  $lider->id_lider;
@@ -54,6 +55,8 @@ class conexion  {
         $_SESSION['user_id'] = $id;
         $_SESSION['user_name'] = $name;
         $_SESSION['lider_id'] = $lider_id;
+        $_SESSION['area'] = $area;
+        
         }
         echo "index.php";
     }
@@ -171,6 +174,14 @@ class conexion  {
         
     }
     
+    
+    public function getAreaByUserId($user_id){
+    	$queryArea="select area from usuario where id=".$user_id."";
+    	$resArea= $this->conexion->query($queryArea);
+    	$area_user = $resArea->fetch_object();
+    	$area_user = $area_user->area;
+    	return $area_user;
+    }
     
    public function actualizarperfil1 ($nombre,$user_id,$ubicacion,$educacion)
     { 
