@@ -14,7 +14,7 @@ $_PAGE_PERMISSIONS = array(
 	)
 );
 
-// Pagina Actual : 014
+// Pagina Actual : 016
 
 $_PAGE_CONFIG = array(
 		//000 siempre es la home
