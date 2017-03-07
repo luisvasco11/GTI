@@ -3,8 +3,7 @@
 <script src="dist/js/pages/jquery.js"></script>
 <script src="dist/js/pages/operaciones.js"></script>
 
-
-
+    
 <?php
 
 // Nombre y Area
@@ -55,21 +54,21 @@ $tiempo = $h + $m;
 
 		<!-- /.box-header -->
 		<div class="box-body">
-			<form action="pages/backend/pendientes.php" method="POST">
+			<form action="pages/backend/pendientes.php" method="POST" onsubmit="return validacion(this)">
 
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label>Actividad</label> <input type="text" id="actividad"
-								class="form-control" disabled>
+								class="form-control" disabled required>
 						</div>
 						<div class="form-group">
 							<label>Categoria</label> <input type="text" name="categoria"
-								id="categoria" required class="form-control" disabled>
+								id="categoria" required class="form-control" disabled  required>
 						</div>
 						<div class="form-group">
 							<label>Plataforma</label> <input id="plataforma" type="text"
-								class="form-control" disabled>
+								class="form-control" disabled  required>
 						</div>
               
 
@@ -80,7 +79,8 @@ $tiempo = $h + $m;
 						<div class="form-group">
 							<label>Contrato</label> <select id="id_contrato"
 								name="id_contrato" class="form-control select2"
-								style="width: 100%;" required>                  
+								style="width: 100%;" required>      
+								<option value="" id=""></option>            
                   <?php
 															
 while ( $row = $rContratos->fetch_object () ) {
@@ -101,7 +101,7 @@ while ( $row = $rContratos->fetch_object () ) {
                 <div class="form-group">
 							<label>Descripción</label>
 							<textarea id="descripcion" name="descripcion"
-								class="form-control" rows="5" placeholder="Descripción"></textarea>
+								class="form-control" rows="5" placeholder="Descripción" required></textarea>
 						</div>
 						<!-- /.form-group -->
 					</div>
@@ -110,8 +110,8 @@ while ( $row = $rContratos->fetch_object () ) {
 						<div class="form-group">
 							<label>Id actividad</label> <select id="id_actividad"
 								name="id_actividad" class="form-control select2"
-								style="width: 100%;" onchange="queryActividad();" required>
-								<option value="1" id=""></option>                  
+								style="width: 100%;" onchange="queryActividad(this);" required>
+								<option value="" id=""></option>
                  <?php
 																	
 while ( $row = $re->fetch_object () ) {

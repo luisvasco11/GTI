@@ -96,7 +96,7 @@ $initialDate = $row ['fecha_inicio'];
 			</ul>
 			
 					<?php
-					if ($registros == 0) {
+					if ($registros <> 0) {
 						?>
 			<div class="tab-content no-padding">
 

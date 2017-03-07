@@ -38,7 +38,8 @@ ALTER TABLE `bitacora`.`usuario` ADD COLUMN `fecha_control` DATE NULL AFTER `hab
 ALTER TABLE `bitacora`.`registro_actividad` 
 DROP FOREIGN KEY `contratoFK`;
 
--- Carlos lopez 06/03/2017 - aplicado
+-- Carlos lopez 06/03/2017 - aplicado arus
+-- Carlos lopez 06/03/2017 - aplicado casa
 
 
 ALTER SCHEMA `bitacora`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_spanish_ci ;
@@ -52,4 +53,4 @@ CHARACTER SET = utf8 , COLLATE = utf8_unicode_ci ;
 ALTER TABLE `bitacora`.`usuario` 
 COLLATE = utf8_unicode_ci ;
 
-
+-- Carlos lopez 07/03/2017 - aplicado arus

@@ -64,7 +64,7 @@ $tiempo = $h + $m;
 
 		<!-- /.box-header -->
 		<div class="box-body">
-			<form action="pages/backend/actividad.php" method="POST">
+			<form action="pages/backend/actividad.php" method="POST"  onsubmit="return validacion(this)"> 
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -90,7 +90,7 @@ $tiempo = $h + $m;
 							<label>Contrato</label> <select id="id_contrato"
 								name="id_contrato" class="form-control select2"
 								style="width: 100%;" required>
-								<option disabled selected value>-- Seleccione una opción --</option>              
+								<option value="" id=""></option>          
                   
 			 <?php
 				
@@ -137,8 +137,8 @@ while ( $row = $rContratos->fetch_object () ) {
 								<label>Id Actividad</label> <br> <select
 									class="form-control select2" style="width: 50%;"
 									id="id_actividad" name="id_actividad"
-									onchange="queryActividad();" required>
-									<option value="1"></option>
+									onchange="queryActividad(this);" required>
+									<option value="" id=""></option>
                   <?php
 																		
 while ( $row = $re->fetch_object () ) {
@@ -158,14 +158,14 @@ while ( $row = $re->fetch_object () ) {
 							<div class="form-group">
 								<label>Descripción</label>
 								<textarea id="descripcion" name="descripcion"
-									class="form-control" rows="5" placeholder="Descripción"></textarea>
+									class="form-control" rows="5" placeholder="Descripción" required></textarea>
 							</div>
 
 							<div class="form-group">
 								<label>Tiempo Real</label>
 
 								<div class="input-group" style="width: 50%;">
-									<input type="number" id="tiempoRealMin" name="tiempoRealMin"
+									<input type="number" id="tiempoReal" name="tiempoReal"
 										value="<?php echo $tiempo; ?>" type="text"
 										class="form-control">
 
