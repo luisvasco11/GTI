@@ -6,12 +6,20 @@ $_PAGE_PERMISSIONS = array(
 		"006" => false,
 		"017" => false,
 		"018" => false,
+			"012" => false,
+			"013" => false,
+			"015" => false,
+			"016" => false,
 	),
 	"2" => array(
 		"011" => false,
 		"010" => false,
 		"017" => false,
 		"018" => false,
+			"012" => false,
+			"013" => false,
+			"015" => false,
+			"016" => false,
 	),
 	"3" => array(
 		
