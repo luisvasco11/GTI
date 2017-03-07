@@ -4,12 +4,19 @@ $_PAGE_PERMISSIONS = array(
 	"1" => array(
 		"005" => false,
 		"006" => false,
+		"017" => false,
+		"018" => false,
 	),
 	"2" => array(
 		"011" => false,
 		"010" => false,
+		"017" => false,
+		"018" => false,
 	),
 	"3" => array(
+		
+	),
+	"4" => array(
 		
 	)
 );
