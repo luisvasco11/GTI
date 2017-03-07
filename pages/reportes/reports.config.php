@@ -30,7 +30,7 @@ $_REPORTS_CONFIG = array(
 		),
 		"contratos" => array(
 				"titulo" => "Reporte de Estado de Contratos",
-				"query" => "SELECT codigo,nombre,estado FROM bitacora.new_proyectos;",
+				"query" => "SELECT codigo,nombre,estado FROM new_proyectos;",
 				"columnas" => array(
 						"codigo" => "Codigo del proyecto",
 						"nombre" => "Nombre",

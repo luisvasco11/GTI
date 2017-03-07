@@ -7,32 +7,11 @@
 
 <?php
 
-// Nombre y Area
-$query = "select u.nombre, (select a.area from areas a where a.id =u.area) area from usuario u where u.id='$user_id'";
-$nameandarea = $wish->conexion->query ( $query );
-
-$queryArea = "select area from usuario where id=" . $user_id . "";
-$resArea = $wish->conexion->query ( $queryArea );
-$area_user = $resArea->fetch_object ();
-$area_user = $area_user->area;
-
-$query = "select actividad from actividad";
-$res = $wish->conexion->query ( $query );
-
-$query = "select id from actividad where area=8 or area=" . $area_user . "";
+$query = "select id from actividad where area=8 or area=" . $userinfo->area . "";
 $re = $wish->conexion->query ( $query );
 $fila = mysqli_fetch_row ( $re );
 
-$query1 = "select id from actividad where area=" . $area_user . "";
-$reimp = $wish->conexion->query ( $query1 );
-
-$query = "select * from proyecto";
-$rea = $wish->conexion->query ( $query );
-
-$query = "select categoria from actividad";
-$rep = $wish->conexion->query ( $query );
-
-$queryContratos = "SELECT codigo,alias FROM bitacora.new_lider_contratos where id_lider = $lider_id;";
+$queryContratos = "SELECT codigo,alias FROM new_lider_contratos where id_lider = $lider_id;";
 $rContratos = $wish->conexion->query ( $queryContratos );
 
 $editar = 0;

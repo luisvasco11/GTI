@@ -1,14 +1,11 @@
 <?php
-$ctrl_q = "select fecha_control from usuario where id = $user_id";
-$ctrl_r = $wish->conexion->query ( $ctrl_q );
-$ctrl_arr = $ctrl_r->fetch_array ();
-$ctrl = $ctrl_arr ["fecha_control"];
+$ctrl = $wish->getFechaControlUser($userinfo->user_id);
 
 $pending_query = "select 
 v.selected_date, 
 (select  (sum(tiempoReal)/60) as registro 
 	from registro_actividad 
-    where user_id = $user_id 
+    where cedula = $userinfo->user_id 
 		and DATE_FORMAT(fecha_inicio,'%Y-%m-%d') = v.selected_date
 ) as tiempo 
 from 
@@ -72,10 +69,12 @@ while ( $arr = $pen->fetch_array () ) {
 
 
 <?php
-$query = $wish->getActiveTaskForUser ( $user_id );
+$query = $wish->getActiveTaskForUser ( $userinfo->user_id );
 $row = mysqli_fetch_array ( $query );
 $numero_filas = mysqli_num_rows ( $query );
 $initialDate = $row ['fecha_inicio'];
+echo $numero_filas;
+
 ?>
 
 
@@ -210,10 +209,12 @@ $initialDate = $row ['fecha_inicio'];
 				if ($numero_filas > 0) {
 					?>
     <script>
+    
         var d = <?php echo "'".$initialDate."'" ?>;
         var date = new Date(d.substr(0, 4), d.substr(5, 2) - 1, d.substr(8, 2), d.substr(11, 2), d.substr(14, 2), d.substr(17, 2));
         console.log("date: "+date);
         inicioAutomatico(date);
+        
     </script>
     <?php
 				}

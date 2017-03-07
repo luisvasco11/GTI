@@ -18,11 +18,8 @@
 
 
 <?php
+$consulta ="SELECT id,plataforma,categoria,actividad FROM actividad where area=8 or area=".$userinfo->area."";
 
-$queryArea="select area from usuario where id=".$user_id."";
-$resArea= $wish->conexion->query($queryArea);
-$area_user = $resArea->fetch_object();
-$area_user = $area_user->area;
 
 $editar=0;
 $editar_res=null;
@@ -82,8 +79,7 @@ if($editar){
 											<tbody>
 												<?php												
 
-												$consulta ="SELECT id,plataforma,categoria,actividad FROM actividad where area=8 or area=".$area_user."";
-                        $consulta1 ="SELECT id,plataforma,categoria,actividad FROM actividad where area=".$area_user."";
+
 
 
 

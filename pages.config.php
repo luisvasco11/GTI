@@ -128,6 +128,26 @@ $_PAGE_CONFIG = array(
 						"link" => 'pages/gestion_configuracion/editar_cis/body.php',
 						"menu_css_class" => "fa-pencil-square-o"
 				),
+		"017" => array(
+				"show" => true,
+				"isSubmenu" => false,
+				"big" => "GTI",
+				"menu_css_class" => "fa-cogs",
+				"small" => "Administracón",
+				"menu" => "Administracón",
+				"submenu" => array(
+						"1" => "018",
+				)
+		),
+			"018" => array(
+					"show" => true,
+					"isSubmenu" => true,
+					"big" => "Administracónn",
+					"small" => "Actualizar Usuarios",
+					"menu" => "Actualizar Usuarios",
+					"link" => 'pages/administracion/actualizar_usuarios/body.php',
+					"menu_css_class" => "fa-user-plus"
+			),
 		"007" => array(
 				"show" => true,
 				"isSubmenu" => false,
