@@ -4,7 +4,7 @@ class conexion {
 	private $server = "localhost";
 	private $usuario = "root";
 	private $pass = "pruebas48";
-	private $db = "bitacora";
+	private $db = "gti";
 
 	
 	public function __construct() {
