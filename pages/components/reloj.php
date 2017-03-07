@@ -1,9 +1,8 @@
 <?php
-
 $ctrl_q = "select fecha_control from usuario where id = $user_id";
 $ctrl_r = $wish->conexion->query ( $ctrl_q );
 $ctrl_arr = $ctrl_r->fetch_array ();
-$ctrl = $ctrl_arr["fecha_control"];
+$ctrl = $ctrl_arr ["fecha_control"];
 
 $pending_query = "select 
 v.selected_date, 
@@ -22,7 +21,6 @@ from
 where v.selected_date between '$ctrl' and NOW() - INTERVAL 1 DAY
 and DATE_FORMAT(v.selected_date,'%w') <> 0 
 and DATE_FORMAT(v.selected_date,'%w') <> 6";
-
 
 $pen = $wish->conexion->query ( $pending_query );
 $registros = 0;
@@ -130,56 +128,61 @@ $initialDate = $row ['fecha_inicio'];
 			<?php
 					} else {
 						?>
-			
-			  <div class="callout callout-danger">
-				<h3>Alerta!</h3>
-				<p>
-					El cronometro no se activara hasta que se complete el tiempo diario
-					necesario, el cual es de mínimo 8 horas, en caso de ausentismos o
-					vacaciones, por favor registrarlo de la forma tradicional, en la
-					lista de actividades aparecen las categorías necesarias para cada
-					situación. <br><br> A continuación el reporte de las horas registradas
-					diariamente y las que faltan por registrar.
-				</p>
-			</div>
+						<br>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="callout callout-danger">
+						<h3>Alerta!</h3>
+						<p>
+							El cronometro no se activara hasta que se complete el tiempo
+							diario necesario, el cual es de mínimo 8 horas y 30 minutos, en
+							caso de ausentismos (vacaciones, permisos, incapacidades), por
+							favor registrarlo en la sección de ausentismos, de lo contrario
+							usar el registro por demanda para completar las horas pendientes.
+							<br>
+						</p>
+					</div>
 
 
-			<div class="pad">
-				<!-- Map will be created here -->
-				<table id="example" class="table table-striped table-bordered"
-					cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>Fecha</th>
-							<th>Tiempo registrado</th>
-							<th>Tiempo pendiente</th>
-						</tr>
-					</thead>
-					<tbody>
+					<div class="pad">
+						<!-- Map will be created here -->
+						<table id="pendientes" class="table table-striped table-bordered"
+							cellspacing="0" width="100%">
+							<h3>Reporte de horas pendientes</h3>
+							<thead>
+								<tr>
+									<th>Fecha</th>
+									<th>Tiempo registrado</th>
+									<th>Tiempo pendiente</th>
+								</tr>
+							</thead>
+							<tbody>
                                <?php
 						foreach ( $reg_pen as $r ) {
 							foreach ( $r as $key => $value ) {
 								$falta = 8 - $value;
 								?>
                                     <tr>
-							<td><?php printf($key);?></td>
-							<td><?php printf($value);?></td>
-							<td><?php printf($falta);?></td>
-						</tr>
+									<td><?php printf($key);?></td>
+									<td><?php printf($value);?></td>
+									<td><?php printf($falta);?></td>
+								</tr>
                                             <?php
 							}
 						}
 						?>
                                         </tbody>
-				</table>
-				<div class="col-md-offset-5">
-				<a href="index.php?page=005" class="btn btn-app">
-                <i class="fa fa-edit"></i> Registro por demnanda
- 				</a>
- 				</div>
+						</table>
+						<div class="col-md-offset-4">
+							<a href="index.php?page=005" class="btn btn-app"> <i
+								class="fa fa-edit"></i> Registro por demnanda
+							</a> <a href="index.php?page=014" class="btn btn-app"> <i
+								class="fa fa-plane"></i> Registro de ausentismo
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			
-			
  			
  			
 			<?php }?>
