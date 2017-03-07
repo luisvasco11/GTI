@@ -135,10 +135,10 @@ $initialDate = $row ['fecha_inicio'];
 				<h3>Alerta!</h3>
 				<p>
 					El cronometro no se activara hasta que se complete el tiempo diario
-					necesario, el cual es de mínimo 8 horas, en caso de ausentismos o
+					necesario, el cual es de mÃ­nimo 8 horas, en caso de ausentismos o
 					vacaciones, por favor registrarlo de la forma tradicional, en la
-					lista de actividades aparecen las categorías necesarias para cada
-					situación. <br><br> A continuación el reporte de las horas registradas
+					lista de actividades aparecen las categorÃ­as necesarias para cada
+					situaciÃ³n. <br><br> A continuaciÃ³n el reporte de las horas registradas
 					diariamente y las que faltan por registrar.
 				</p>
 			</div>

@@ -3,7 +3,7 @@
         <div class="error-content">
           <h3><i class="fa fa-warning text-yellow"></i> Oops! Permiso denegado.</h3>
           <p>
-            No tienes permisos para ingresar a esta página!
+            No tienes permisos para ingresar a esta pÃ¡gina!
           </p>
         </div>
         <!-- /.error-content -->

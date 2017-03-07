@@ -14,13 +14,13 @@ class conexion  {
     public function __construct(){
 
         $this->conexion = new mysqli ($this->server, $this->usuario, $this->pass, $this->db);
-
         
         if($this->conexion->connect_errno){
 
             die("Fallo al tratar de conectar con MySQL: (". $this->conexion->connect_errno.")");
 
         }
+        $this->conexion->query("SET NAMES 'utf8'");
     }
 
     public function cerrar(){

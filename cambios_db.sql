@@ -39,3 +39,17 @@ ALTER TABLE `bitacora`.`registro_actividad`
 DROP FOREIGN KEY `contratoFK`;
 
 -- Carlos lopez 06/03/2017 - aplicado
+
+
+ALTER SCHEMA `bitacora`  DEFAULT CHARACTER SET utf8  DEFAULT COLLATE utf8_spanish_ci ;
+
+ALTER TABLE `bitacora`.`registro_actividad` 
+CHARACTER SET = utf8 , COLLATE = utf8_unicode_ci ;
+
+ALTER TABLE `bitacora`.`new_proyectos` 
+CHARACTER SET = utf8 , COLLATE = utf8_unicode_ci ;
+
+ALTER TABLE `bitacora`.`usuario` 
+COLLATE = utf8_unicode_ci ;
+
+

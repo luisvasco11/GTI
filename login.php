@@ -8,7 +8,7 @@ if ($_SESSION ['authenticated'] == 1) {
 ?>
 <html>
     <head>
-        <title>SISTEMA DE INFORMACIÓN GTI</title>
+        <title>SISTEMA DE INFORMACIÃ“N GTI</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="dist/css/reset.css" type="text/css" rel="stylesheet" />
