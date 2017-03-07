@@ -73,7 +73,7 @@ $query = $wish->getActiveTaskForUser ( $userinfo->user_id );
 $row = mysqli_fetch_array ( $query );
 $numero_filas = mysqli_num_rows ( $query );
 $initialDate = $row ['fecha_inicio'];
-echo $numero_filas;
+
 
 ?>
 
