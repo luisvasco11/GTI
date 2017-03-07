@@ -92,18 +92,20 @@ $productividad = $wish->conexion->query ( $query );
 			<div class="icon bg-red">
 				<i class="fa fa-clock-o" aria-hidden="true"></i>
 			</div>
-			<a href="index.php?page=006"> 
+			
 			<div class="content">
 				<div class="text">Actividades del mes</div><br>
 				<div class="number">
+					<a href="index.php?page=006">
 					<span class="count"><?php
 					while ( $row = $actividadesdelmes->fetch_array ( MYSQLI_NUM ) ) {
 						echo $row [0] . "<br/>\n";
 					}
 					?></span>
+					</a>
 				</div>
 			</div>
-			</a>
+			
 		</div>
 
 	</div>

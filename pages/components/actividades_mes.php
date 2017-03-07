@@ -98,7 +98,7 @@ $nombre2 = $wish->conexion->query ( $query );
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-             <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+             <table id="zctb" class="display table table-striped table-bordered table-hover" >
                                             <thead>
                                                 <tr>                                             
                                                     <th>Actividad</th>                                                    

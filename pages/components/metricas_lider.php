@@ -102,18 +102,19 @@ for($i = 1; $i < ($numFilas + 1); $i ++) {
 			<div class="icon bg-green">
 				<i class="fa fa-file" aria-hidden="true"></i>
 			</div>
-			<a href="index.php?page=011"> 
+			
 			<div class="content">
 				<div class="text">N° Contratos</div><br>
 				<div class="number">
+				<a href="index.php?page=011"> 
                     <?php	
 									while ( $row = $contratos->fetch_array ( MYSQLI_NUM ) ) {
 									echo $row [0] . "<br/>\n";
 									}
-								 ?></div>
+								 ?></a></div>
 			
 			</div>
-			</a>
+			
 		</div>
 
 	</div>	
@@ -125,16 +126,17 @@ for($i = 1; $i < ($numFilas + 1); $i ++) {
 			<div class="icon bg-yellow">
 				<i class="fa fa-envelope-o" aria-hidden="true"></i>
 			</div>
-			<a href="index.php?page=010"> 
+			
 			<div class="content">
 				<div class="text">N° Pendientes</div><br>
 				<div class="number">
+				<a href="index.php?page=010"> 
                     <?php	
 									while ( $row = $pendientes->fetch_array ( MYSQLI_NUM ) ) {
 									echo $row [0] . "<br/>\n";
 									}
-								?></div>
-			</div></a>
+								?></a></div>
+			</div>
 		</div>
 
 	</div>	

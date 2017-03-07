@@ -1,5 +1,5 @@
    
-<script language="javascript">
+<script>
             function comprobarClave(){ 
    	    cambiopass = document.f1.cambiopass.value 
    	    clave2 = document.f1.clave2.value 

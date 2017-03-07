@@ -110,7 +110,7 @@ while ( $row = $rContratos->fetch_object () ) {
 						<div class="form-group">
 							<label>Id actividad</label> <select id="id_actividad"
 								name="id_actividad" class="form-control select2"
-								style="width: 100%;" onchange="queryActividad(this);" required>
+								style="width: 100%;" onchange="queryActividad();" required>
 								<option value="" id=""></option>
                  <?php
 																	

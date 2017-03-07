@@ -96,7 +96,7 @@ $initialDate = $row ['fecha_inicio'];
 			</ul>
 			
 					<?php
-					if ($registros <> 0) {
+					if ($registros == 0) {
 						?>
 			<div class="tab-content no-padding">
 
@@ -146,9 +146,10 @@ $initialDate = $row ['fecha_inicio'];
 
 					<div class="pad">
 						<!-- Map will be created here -->
+						<h3 class="box-title">Registros Pendientes</h3>
 						<table id="pendientes" class="table table-striped table-bordered"
-							cellspacing="0" width="100%">
-							<h3>Reporte de horas pendientes</h3>
+							>
+							
 							<thead>
 								<tr>
 									<th>Fecha</th>

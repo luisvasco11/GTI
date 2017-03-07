@@ -6,8 +6,9 @@ function validacion(formulario) {
            }   
 }
 
-function queryActividad(actividad){
-        var id = actividad.value;
+
+function queryActividad(){
+		var id = document.getElementById("id_actividad").value;
         if(id > 0){
 	        fetch_actividad(id);
 	        fetch_plataforma(id);

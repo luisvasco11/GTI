@@ -8,7 +8,7 @@
 				$('#zctb').DataTable();
 			} );
 			function select(link){
-				var id = link.name;               
+				var id = link.id;               
         document.getElementById("id_actividad").value = id;
 				$('html,body').scrollTop(0); 
                 queryActividad();
@@ -70,7 +70,7 @@ if($editar){
               <h3 class="box-title">Lista de actividades</h3>
             </div>
             <div class="box-body">
-              <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+              <table id="zctb" class="display table table-striped table-bordered table-hover" >
 											<thead>
 												<tr>
 													<th>ID</th>
@@ -94,7 +94,7 @@ if($editar){
 
                           {?>
                         <tr>
-                          <td><a haref="#" onclick="select(this)" name="<?php printf($obj->id);?>"><?php printf($obj->id);?></a></td>
+                          <td><a href="#" onclick="select(this)" id="<?php printf($obj->id);?>"><?php printf($obj->id);?></a></td>
                           <td><?php printf($obj->plataforma);?></td>
                           <td><?php printf($obj->categoria);?></td>
                           <td><?php printf($obj->actividad);?></td>  

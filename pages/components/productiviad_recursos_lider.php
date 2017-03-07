@@ -80,7 +80,7 @@ for($i = 1; $i < ($numFilas + 1); $i ++) {
 						<div class="pad">
 							<!-- Map will be created here -->
 							<table id="example" class="table table-striped table-bordered"
-								cellspacing="0" width="100%">
+								>
 								<thead>
 									<tr>
 										<th></th>

@@ -137,7 +137,7 @@ while ( $row = $rContratos->fetch_object () ) {
 								<label>Id Actividad</label> <br> <select
 									class="form-control select2" style="width: 50%;"
 									id="id_actividad" name="id_actividad"
-									onchange="queryActividad(this);" required>
+									onchange="queryActividad();" required>
 									<option value="" id=""></option>
                   <?php
 																		
@@ -181,6 +181,26 @@ while ( $row = $re->fetch_object () ) {
               <?php
 														if ($editar) {
 															?>
+															<script>
+																<?php
+																$row_editar= $editar_res->fetch_object();
+																$id_actividad = $row_editar->id_actividad;
+																$numerotiquete = $row_editar->numerotiquete;
+																$descripcion = $row_editar->descripcion;
+																$id_contrato = $row_editar->id_contrato;
+																$tiempoReal = $row_editar->tiempoReal;
+																$tiempo_calculado = $row_editar->tiempo_calculado;
+																?>
+							                                     document.getElementById("id_actividad").value="<?php echo $id_actividad;  ?>";
+							                                     queryActividad();
+							                                     document.getElementById("numerotiquete").value="<?php echo $numerotiquete;  ?>";
+							                                     document.getElementById("descripcion").value="<?php echo $descripcion;  ?>";
+							                                     document.getElementById("<?php echo $id_contrato; ?>").selected = true;
+							                                     document.getElementById("tiempo_calculado").value="<?php echo $tiempo_calculado;  ?>";
+							                                     document.getElementById("tiempoReal").value="<?php echo $tiempoReal;  ?>";
+							                                     
+															  </script>  
+															
                                             <input type="hidden" id="id"
 							name="id" value="<?php echo $id_editar; ?>" /> <input
 							type="hidden" id="editar" name="editar" value="1" />
