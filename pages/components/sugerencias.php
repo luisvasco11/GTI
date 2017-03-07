@@ -1,18 +1,7 @@
 <?php 
 
-$query = $wish->getActiveTaskForUser($user_id);
 
-$row = mysqli_fetch_array($query);
-$número_filas = mysqli_num_rows($query);
-$initialDate = $row['fecha_inicio'];
-
-
-// Nombre y Area
-$query ="select u.nombre, (select a.area from areas a where a.id =u.area) area from usuario u where u.id='$user_id'";
-$nameandarea = $wish->conexion->query ( $query );
-
-
-$query ="SELECT correo FROM usuario where id='$user_id'";
+$query ="SELECT correo FROM new_personas where cedula='$userinfo->user_id'";
 $mail = $wish->conexion->query ( $query );
 
 ?>

@@ -50,8 +50,6 @@ ALTER TABLE `usuario` ADD COLUMN `fecha_control` DATE NULL AFTER `habilidades`;
 
 -- update usuario set fecha_control = "<fecha de control>"; aplicar como fecha de control
 
-ALTER TABLE `registro_actividad` 
-DROP FOREIGN KEY `contratoFK`;
 
 -- Carlos lopez 06/03/2017 - aplicado arus
 -- Carlos lopez 06/03/2017 - aplicado casa
@@ -73,7 +71,7 @@ COLLATE = utf8_unicode_ci ;
 -- 1. renombrar table usuario a usuario_tmp
 ALTER TABLE `usuario` RENAME TO  `usuario_tmp` ;
 -- 2. se crea tabla new_usuario con los campos de usuario
-create table new_usuario as SELECT u.id,p.cedula,p.correo,u.cargo_id as rol,u.password,u.estado,u.fecha_control,u.area FROM bitacora.new_personas p ,bitacora.usuario_tmp u where u.correo = p.correo;
+create table new_usuario as SELECT u.id,p.cedula,p.correo,u.cargo_id as rol,u.password,u.estado,u.fecha_control,u.area FROM new_personas p ,usuario_tmp u where u.correo = p.correo;
 -- 3. se altera la tabla de registro_actividad incluyendo la cedula del usuario
 ALTER TABLE `registro_actividad` ADD COLUMN `cedula` VARCHAR(45) NULL AFTER `tiempo_calculado`;
 -- 4. actualizar cedulas en registro_actividad
