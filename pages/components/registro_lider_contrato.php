@@ -1,6 +1,6 @@
 <?php
 $titulo = "Contratos Inactivos";
-$query = "select codigo,nombre,estado  FROM bitacora.new_proyectos WHERE   ROW(codigo, " . $user_id . ") NOT IN(select codigo,id_lider from bitacora.new_lider_contratos) and estado = 'Abrir';";
+$query = "select codigo,nombre,estado  FROM new_proyectos WHERE   ROW(codigo, " . $user_id . ") NOT IN(select codigo,id_lider from new_lider_contratos) and estado = 'Abrir';";
 $columns = array (
 		"codigo" => "Codigo del proyecto",
 		"nombre" => "Nombre",

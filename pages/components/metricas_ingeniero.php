@@ -1,21 +1,15 @@
 <?php
+/*
 $query = $wish->getActiveTaskForUser ( $user_id );
 
 $row = mysqli_fetch_array ( $query );
 $numero_filas = mysqli_num_rows ( $query );
 $initialDate = $row ['fecha_inicio'];
-
+*/
 // Actividades del mes
-$query = "SELECT COUNT(*) FROM registro_actividad WHERE user_id='$user_id'and estado='F' and MONTH(fecha_inicio) = MONTH(NOW())";
-$actividadesdelmes = $wish->conexion->query ( $query );
 
-// Nombre y Area
-$query = "select u.nombre, (select a.area from areas a where a.id =u.area) area from usuario u where u.id='$user_id'";
-$nameandarea = $wish->conexion->query ( $query );
-
-// productividad
-$query = " SELECT  round ((avg(a.tiempoReal)),1) productividad  FROM registro_actividad a,usuario r WHERE a.user_id='$user_id' and MONTH(fecha_inicio) = MONTH(NOW())";
-$productividad = $wish->conexion->query ( $query );
+$actividadesdelmes = $wish->getActividadesMesAnalista($userinfo->user_id);
+$productividad = $wish->getProductividad($userinfo->user_id);
 
 ?>
 
@@ -92,18 +86,20 @@ $productividad = $wish->conexion->query ( $query );
 			<div class="icon bg-red">
 				<i class="fa fa-clock-o" aria-hidden="true"></i>
 			</div>
-			<a href="index.php?page=006"> 
+			
 			<div class="content">
 				<div class="text">Actividades del mes</div><br>
 				<div class="number">
+					<a href="index.php?page=006">
 					<span class="count"><?php
 					while ( $row = $actividadesdelmes->fetch_array ( MYSQLI_NUM ) ) {
 						echo $row [0] . "<br/>\n";
 					}
 					?></span>
+					</a>
 				</div>
 			</div>
-			</a>
+			
 		</div>
 
 	</div>

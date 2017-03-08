@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <?php
+header("Content-Type: text/html;charset=utf-8");
 session_start ();
 if ($_SESSION ['authenticated'] == 1) {
 	
 include_once 'modelo/conexion.php';
+
 include_once 'seguridad/userinfo.class.php';
 $wish = new conexion;
 $user_id = $_SESSION['user_id'];
 $rol = $_SESSION['rol'];
-$user_name = $_SESSION['user_name'];
+$user_name = ucwords(strtolower($_SESSION['user_name']));
 $lider_id = $_SESSION['lider_id'];
 
 $userinfo = new UserInfo;
+$userinfo->user_id = $_SESSION['user_id'];
 $userinfo->lider_id = $_SESSION['lider_id'];
-$userinfo->user_name = $_SESSION['user_name'];
+$userinfo->user_name = ucwords(strtolower($_SESSION['user_name']));
 $userinfo->area = $_SESSION['area'];
 $userinfo->rol =$_SESSION['rol'];
+$userinfo->cargo =ucwords(strtolower($_SESSION['cargo']));
 
 
 

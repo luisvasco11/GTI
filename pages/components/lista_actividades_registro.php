@@ -8,7 +8,7 @@
 				$('#zctb').DataTable();
 			} );
 			function select(link){
-				var id = link.name;               
+				var id = link.id;               
         document.getElementById("id_actividad").value = id;
 				$('html,body').scrollTop(0); 
                 queryActividad();
@@ -18,11 +18,8 @@
 
 
 <?php
+$consulta ="SELECT id,plataforma,categoria,actividad FROM actividad where area=8 or area=".$userinfo->area."";
 
-$queryArea="select area from usuario where id=".$user_id."";
-$resArea= $wish->conexion->query($queryArea);
-$area_user = $resArea->fetch_object();
-$area_user = $area_user->area;
 
 $editar=0;
 $editar_res=null;
@@ -70,7 +67,7 @@ if($editar){
               <h3 class="box-title">Lista de actividades</h3>
             </div>
             <div class="box-body">
-              <table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+              <table id="zctb" class="display table table-striped table-bordered table-hover" >
 											<thead>
 												<tr>
 													<th>ID</th>
@@ -82,8 +79,7 @@ if($editar){
 											<tbody>
 												<?php												
 
-												$consulta ="SELECT id,plataforma,categoria,actividad FROM actividad where area=8 or area=".$area_user."";
-                        $consulta1 ="SELECT id,plataforma,categoria,actividad FROM actividad where area=".$area_user."";
+
 
 
 
@@ -94,7 +90,7 @@ if($editar){
 
                           {?>
                         <tr>
-                          <td><a haref="#" onclick="select(this)" name="<?php printf($obj->id);?>"><?php printf($obj->id);?></a></td>
+                          <td><a href="#" onclick="select(this)" id="<?php printf($obj->id);?>"><?php printf($obj->id);?></a></td>
                           <td><?php printf($obj->plataforma);?></td>
                           <td><?php printf($obj->categoria);?></td>
                           <td><?php printf($obj->actividad);?></td>  

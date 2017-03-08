@@ -1,11 +1,23 @@
+function validacion(formulario) {
+	console.log("validando insert");
+    	 if (formulario.tiempoReal.value > 180 || formulario.tiempoReal.value < 10 ) {
+             alert('El tiempo de las actividades debe estar en el rango de 10 a 180 minutos');
+             return false
+           }   
+}
 
 
 function queryActividad(){
-        var id = document.getElementById("id_actividad").value;
-        console.log("id: "+id);
-        fetch_actividad(id);
-        fetch_plataforma(id);
-        fetch_categoria(id);
+		var id = document.getElementById("id_actividad").value;
+        if(id > 0){
+	        fetch_actividad(id);
+	        fetch_plataforma(id);
+	        fetch_categoria(id);
+	     }else{
+	    	 $('#actividad').val("");
+	    	 $('#plataforma').val("");
+	    	 $('#categoria').val("");
+	     }
 }
 
 function fetch_actividad(id){

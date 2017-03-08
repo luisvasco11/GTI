@@ -27,15 +27,15 @@ class NagiosIntegration{
 		$id = "";
 		$metric = "select metric_id from centreon_storage.metrics where metric_name = 'percent' and index_id='$id';";
 		$metric_id = "";
-		getPercentageMetricData($consola,$metric_id,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin);
+		$this->getPercentageMetricData($consola,$metric_id,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin);
 	}
 	
-	public function getMemoria($consola,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin,$servidor) {
-		$service = "select id from centreon_storage.index_data where host_name='$servidor' and service_description like 'Disk%';";
+	public function getDisk($consola,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin,$servidor,$disk) {
+		$service = "select id from centreon_storage.index_data where host_name='$servidor' and service_description = '$disk';";
 		$id = "";
 		$metric = "select metric_id from centreon_storage.metrics where metric_name = 'percent' and index_id='$id';";
 		$metric_id = "";
-		getPercentageMetricData($consola,$metric_id,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin);
+		$this->getPercentageMetricData($consola,$metric_id,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin);
 	}
 	
 	

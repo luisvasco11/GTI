@@ -7,15 +7,9 @@ class UserInfo  {
 	public $user_name;
 	public $area;
 	public $lider_id;
+	public $cargo;
 	
 }
-
-
-
-
-
-
-
 
 
 ?>

@@ -1,15 +1,11 @@
 <?php
-
-$ctrl_q = "select fecha_control from usuario where id = $user_id";
-$ctrl_r = $wish->conexion->query ( $ctrl_q );
-$ctrl_arr = $ctrl_r->fetch_array ();
-$ctrl = $ctrl_arr["fecha_control"];
+$ctrl = $wish->getFechaControlUser($userinfo->user_id);
 
 $pending_query = "select 
 v.selected_date, 
 (select  (sum(tiempoReal)/60) as registro 
 	from registro_actividad 
-    where user_id = $user_id 
+    where cedula = $userinfo->user_id 
 		and DATE_FORMAT(fecha_inicio,'%Y-%m-%d') = v.selected_date
 ) as tiempo 
 from 
@@ -22,7 +18,6 @@ from
 where v.selected_date between '$ctrl' and NOW() - INTERVAL 1 DAY
 and DATE_FORMAT(v.selected_date,'%w') <> 0 
 and DATE_FORMAT(v.selected_date,'%w') <> 6";
-
 
 $pen = $wish->conexion->query ( $pending_query );
 $registros = 0;
@@ -74,10 +69,12 @@ while ( $arr = $pen->fetch_array () ) {
 
 
 <?php
-$query = $wish->getActiveTaskForUser ( $user_id );
+$query = $wish->getActiveTaskForUser ( $userinfo->user_id );
 $row = mysqli_fetch_array ( $query );
 $numero_filas = mysqli_num_rows ( $query );
 $initialDate = $row ['fecha_inicio'];
+
+
 ?>
 
 
@@ -130,56 +127,62 @@ $initialDate = $row ['fecha_inicio'];
 			<?php
 					} else {
 						?>
-			
-			  <div class="callout callout-danger">
-				<h3>Alerta!</h3>
-				<p>
-					El cronometro no se activara hasta que se complete el tiempo diario
-					necesario, el cual es de mínimo 8 horas, en caso de ausentismos o
-					vacaciones, por favor registrarlo de la forma tradicional, en la
-					lista de actividades aparecen las categorías necesarias para cada
-					situación. <br><br> A continuación el reporte de las horas registradas
-					diariamente y las que faltan por registrar.
-				</p>
-			</div>
+						<br>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="callout callout-danger">
+						<h3>Alerta!</h3>
+						<p>
+							El cronometro no se activara hasta que se complete el tiempo
+							diario necesario, el cual es de mÃ­nimo 8 horas y 30 minutos, en
+							caso de ausentismos (vacaciones, permisos, incapacidades), por
+							favor registrarlo en la secciÃ³n de ausentismos, de lo contrario
+							usar el registro por demanda para completar las horas pendientes.
+							<br>
+						</p>
+					</div>
 
 
-			<div class="pad">
-				<!-- Map will be created here -->
-				<table id="example" class="table table-striped table-bordered"
-					cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>Fecha</th>
-							<th>Tiempo registrado</th>
-							<th>Tiempo pendiente</th>
-						</tr>
-					</thead>
-					<tbody>
+					<div class="pad">
+						<!-- Map will be created here -->
+						<h3 class="box-title">Registros Pendientes</h3>
+						<table id="pendientes" class="table table-striped table-bordered"
+							>
+							
+							<thead>
+								<tr>
+									<th>Fecha</th>
+									<th>Tiempo registrado</th>
+									<th>Tiempo pendiente</th>
+								</tr>
+							</thead>
+							<tbody>
                                <?php
 						foreach ( $reg_pen as $r ) {
 							foreach ( $r as $key => $value ) {
 								$falta = 8 - $value;
 								?>
                                     <tr>
-							<td><?php printf($key);?></td>
-							<td><?php printf($value);?></td>
-							<td><?php printf($falta);?></td>
-						</tr>
+									<td><?php printf($key);?></td>
+									<td><?php printf($value);?></td>
+									<td><?php printf($falta);?></td>
+								</tr>
                                             <?php
 							}
 						}
 						?>
                                         </tbody>
-				</table>
-				<div class="col-md-offset-5">
-				<a href="index.php?page=005" class="btn btn-app">
-                <i class="fa fa-edit"></i> Registro por demnanda
- 				</a>
- 				</div>
+						</table>
+						<div class="col-md-offset-4">
+							<a href="index.php?page=005" class="btn btn-app"> <i
+								class="fa fa-edit"></i> Registro por demnanda
+							</a> <a href="index.php?page=014" class="btn btn-app"> <i
+								class="fa fa-plane"></i> Registro de ausentismo
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			
-			
  			
  			
 			<?php }?>
@@ -206,10 +209,12 @@ $initialDate = $row ['fecha_inicio'];
 				if ($numero_filas > 0) {
 					?>
     <script>
+    
         var d = <?php echo "'".$initialDate."'" ?>;
         var date = new Date(d.substr(0, 4), d.substr(5, 2) - 1, d.substr(8, 2), d.substr(11, 2), d.substr(14, 2), d.substr(17, 2));
         console.log("date: "+date);
         inicioAutomatico(date);
+        
     </script>
     <?php
 				}

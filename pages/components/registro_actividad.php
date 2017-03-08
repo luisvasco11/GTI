@@ -7,32 +7,11 @@
 
 <?php
 
-// Nombre y Area
-$query = "select u.nombre, (select a.area from areas a where a.id =u.area) area from usuario u where u.id='$user_id'";
-$nameandarea = $wish->conexion->query ( $query );
-
-$queryArea = "select area from usuario where id=" . $user_id . "";
-$resArea = $wish->conexion->query ( $queryArea );
-$area_user = $resArea->fetch_object ();
-$area_user = $area_user->area;
-
-$query = "select actividad from actividad";
-$res = $wish->conexion->query ( $query );
-
-$query = "select id from actividad where area=8 or area=" . $area_user . "";
+$query = "select id from actividad where area=8 or area=" . $userinfo->area . "";
 $re = $wish->conexion->query ( $query );
 $fila = mysqli_fetch_row ( $re );
 
-$query1 = "select id from actividad where area=" . $area_user . "";
-$reimp = $wish->conexion->query ( $query1 );
-
-$query = "select * from proyecto";
-$rea = $wish->conexion->query ( $query );
-
-$query = "select categoria from actividad";
-$rep = $wish->conexion->query ( $query );
-
-$queryContratos = "SELECT codigo,alias FROM bitacora.new_lider_contratos where id_lider = $lider_id;";
+$queryContratos = "SELECT codigo,alias FROM new_lider_contratos where id_lider = $lider_id;";
 $rContratos = $wish->conexion->query ( $queryContratos );
 
 $editar = 0;
@@ -64,7 +43,7 @@ $tiempo = $h + $m;
 
 		<!-- /.box-header -->
 		<div class="box-body">
-			<form action="pages/backend/actividad.php" method="POST">
+			<form action="pages/backend/actividad.php" method="POST"  onsubmit="return validacion(this)"> 
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -90,7 +69,7 @@ $tiempo = $h + $m;
 							<label>Contrato</label> <select id="id_contrato"
 								name="id_contrato" class="form-control select2"
 								style="width: 100%;" required>
-								<option disabled selected value>-- Seleccione una opción --</option>              
+								<option value="" id=""></option>          
                   
 			 <?php
 				
@@ -138,7 +117,7 @@ while ( $row = $rContratos->fetch_object () ) {
 									class="form-control select2" style="width: 50%;"
 									id="id_actividad" name="id_actividad"
 									onchange="queryActividad();" required>
-									<option value="1"></option>
+									<option value="" id=""></option>
                   <?php
 																		
 while ( $row = $re->fetch_object () ) {
@@ -158,14 +137,14 @@ while ( $row = $re->fetch_object () ) {
 							<div class="form-group">
 								<label>Descripción</label>
 								<textarea id="descripcion" name="descripcion"
-									class="form-control" rows="5" placeholder="Descripción"></textarea>
+									class="form-control" rows="5" placeholder="Descripción" required></textarea>
 							</div>
 
 							<div class="form-group">
 								<label>Tiempo Real</label>
 
 								<div class="input-group" style="width: 50%;">
-									<input type="number" id="tiempoRealMin" name="tiempoRealMin"
+									<input type="number" id="tiempoReal" name="tiempoReal"
 										value="<?php echo $tiempo; ?>" type="text"
 										class="form-control">
 
@@ -181,6 +160,26 @@ while ( $row = $re->fetch_object () ) {
               <?php
 														if ($editar) {
 															?>
+															<script>
+																<?php
+																$row_editar= $editar_res->fetch_object();
+																$id_actividad = $row_editar->id_actividad;
+																$numerotiquete = $row_editar->numerotiquete;
+																$descripcion = $row_editar->descripcion;
+																$id_contrato = $row_editar->id_contrato;
+																$tiempoReal = $row_editar->tiempoReal;
+																$tiempo_calculado = $row_editar->tiempo_calculado;
+																?>
+							                                     document.getElementById("id_actividad").value="<?php echo $id_actividad;  ?>";
+							                                     queryActividad();
+							                                     document.getElementById("numerotiquete").value="<?php echo $numerotiquete;  ?>";
+							                                     document.getElementById("descripcion").value="<?php echo $descripcion;  ?>";
+							                                     document.getElementById("<?php echo $id_contrato; ?>").selected = true;
+							                                     document.getElementById("tiempo_calculado").value="<?php echo $tiempo_calculado;  ?>";
+							                                     document.getElementById("tiempoReal").value="<?php echo $tiempoReal;  ?>";
+							                                     
+															  </script>  
+															
                                             <input type="hidden" id="id"
 							name="id" value="<?php echo $id_editar; ?>" /> <input
 							type="hidden" id="editar" name="editar" value="1" />

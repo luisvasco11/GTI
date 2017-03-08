@@ -2,7 +2,7 @@
 
 
 		$titulo = "Contratos Activos";
-		$query = "select c.codigo, c.alias,p.estado  FROM bitacora.new_lider_contratos c,bitacora.new_proyectos p WHERE c.id_lider =".$user_id." and c.codigo = p.codigo ;";
+		$query = "select c.codigo, c.alias,p.estado  FROM new_lider_contratos c,new_proyectos p WHERE c.id_lider =".$user_id." and c.codigo = p.codigo ;";
 		$columns = array(
 				"codigo" => "Codigo del proyecto",
 				"alias" => "Nombre",

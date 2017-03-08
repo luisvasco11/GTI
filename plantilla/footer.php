@@ -12,7 +12,7 @@
 <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
 <div class="control-sidebar-bg"></div>
-</div>
+
 <!-- ./wrapper -->
 
 
@@ -48,8 +48,8 @@
 <script src="plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes)
+<script src="dist/js/pages/dashboard.js"></script>--> 
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 

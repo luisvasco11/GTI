@@ -15,7 +15,6 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -26,11 +25,11 @@
               <!-- User image -->
               <li class="user-header">
                 <img src="dist/img/avatar5.png" class="img-circle" alt="User Image">
-
-                <p>
-                  <?php echo $userinfo->user_name;?>
-                  <small></small>
+                
+                <p >
+                  <?php echo $userinfo->cargo;?>
                 </p>
+                
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">

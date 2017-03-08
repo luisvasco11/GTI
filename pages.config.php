@@ -4,12 +4,27 @@ $_PAGE_PERMISSIONS = array(
 	"1" => array(
 		"005" => false,
 		"006" => false,
+		"017" => false,
+		"018" => false,
+			"012" => false,
+			"013" => false,
+			"015" => false,
+			"016" => false,
 	),
 	"2" => array(
 		"011" => false,
 		"010" => false,
+		"017" => false,
+		"018" => false,
+			"012" => false,
+			"013" => false,
+			"015" => false,
+			"016" => false,
 	),
 	"3" => array(
+		
+	),
+	"4" => array(
 		
 	)
 );
@@ -33,20 +48,20 @@ $_PAGE_CONFIG = array(
 				"isSubmenu" => false,
 				"big" => "GTI",
 				"menu_css_class" => "fa-clock-o",
-				"small" => "Bitacora de Operacion",
-				"menu" => "Bitacora de Operacion",
+				"small" => "Bitacora de Operación",
+				"menu" => "Bitacora de operación",
 				"submenu" => array(
 						"1" => "005",
 						"2" => "006",
 						"3" => "010",
 						"4" => "011",
-						"4" => "014"
+						"5" => "014"
 				)
 		),
 				"005" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Bitacora de operacion",
+						"big" => "Bitacora de operación",
 						"small" => "Actividades por demanda",
 						"menu" => "Actividades por demanda",
 						"link" => 'pages/bitacora_operacion/registro_demanda/body.php',
@@ -55,7 +70,7 @@ $_PAGE_CONFIG = array(
 				"006" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Bitacora de operacion",
+						"big" => "Bitacora de operación",
 						"small" => "Actividades del mes",
 						"menu" => "Actividades del mes",
 						"link" => 'pages/bitacora_operacion/actividades_mes/body.php',
@@ -64,7 +79,7 @@ $_PAGE_CONFIG = array(
 				"010" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Bitacora de operacion",
+						"big" => "Bitacora de operación",
 						"small" => "Pendientes aprobacion",
 						"menu" => "Pendientes aprobacion",
 						"link" => 'pages/bitacora_operacion/actividades_pendientes/body.php',
@@ -73,7 +88,7 @@ $_PAGE_CONFIG = array(
 				"011" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Bitacora de operacion",
+						"big" => "Bitacora de operación",
 						"small" => "Asignacion de contratos",
 						"menu" => "Asignacion de contratos",
 						"link" => 'pages/bitacora_operacion/asignacion_contratos/body.php',
@@ -82,7 +97,7 @@ $_PAGE_CONFIG = array(
 				"014" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Bitacora de operacion",
+						"big" => "Bitacora de operación",
 						"small" => "Registro de Ausentismo",
 						"menu" => "Registro de Ausentismo",
 						"link" => 'pages/bitacora_operacion/registro_ausentismo/body.php',
@@ -93,8 +108,8 @@ $_PAGE_CONFIG = array(
 				"isSubmenu" => false,
 				"big" => "GTI",
 				"menu_css_class" => "fa-info",
-				"small" => "Gestion de eventos",
-				"menu" => "Gestion de eventos",
+				"small" => "Gestión de eventos",
+				"menu" => "Gestión de eventos",
 				"submenu" => array(
 						"1" => "013",
 				)
@@ -102,7 +117,7 @@ $_PAGE_CONFIG = array(
 				"013" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Gestion de eventos",
+						"big" => "Gestión de eventos",
 						"small" => "Nuevo evento",
 						"menu" => "Nuevo evento",
 						"link" => 'pages/gestion_eventos/nuevo_evento/body.php',
@@ -113,8 +128,8 @@ $_PAGE_CONFIG = array(
 				"isSubmenu" => false,
 				"big" => "GTI",
 				"menu_css_class" => "fa-database",
-				"small" => "Gestion de configuracion",
-				"menu" => "Gestion de configuracion",
+				"small" => "Gestión de configuración",
+				"menu" => "Gestión de configuración",
 				"submenu" => array(
 						"1" => "016",
 				)
@@ -122,12 +137,32 @@ $_PAGE_CONFIG = array(
 				"016" => array(
 						"show" => true,
 						"isSubmenu" => true,
-						"big" => "Gestion de configuracion",
+						"big" => "Gestión de configuracion",
 						"small" => "Editar CIs",
 						"menu" => "Editar CIs",
 						"link" => 'pages/gestion_configuracion/editar_cis/body.php',
 						"menu_css_class" => "fa-pencil-square-o"
 				),
+		"017" => array(
+				"show" => true,
+				"isSubmenu" => false,
+				"big" => "GTI",
+				"menu_css_class" => "fa-cogs",
+				"small" => "Administracón",
+				"menu" => "Administracón",
+				"submenu" => array(
+						"1" => "018",
+				)
+		),
+			"018" => array(
+					"show" => true,
+					"isSubmenu" => true,
+					"big" => "Administracónn",
+					"small" => "Actualizar Usuarios",
+					"menu" => "Actualizar Usuarios",
+					"link" => 'pages/administracion/actualizar_usuarios/body.php',
+					"menu_css_class" => "fa-user-plus"
+			),
 		"007" => array(
 				"show" => true,
 				"isSubmenu" => false,
