@@ -38,7 +38,9 @@ class NagiosIntegration{
 		$this->getPercentageMetricData($consola,$metric_id,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin);
 	}
 	
+	
 	public function getPercentageMetricData($consola,$metric_id,$hora_ini,$hora_fin,$fecha_ini,$fecha_fin) {
+		// esta función debe retornar un historico entre horarios y fechas de una metrica especifica la cual es obtenida a traves del servidor y sus servicios en nagios
 		$query = "select
 						STR_TO_DATE(date, '%d-%m-%Y') as day,
 						AVG(avg) avg,
