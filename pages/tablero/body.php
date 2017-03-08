@@ -9,6 +9,7 @@ if($rol == 2){ //analista
 }
 if($rol == 3){ //cordinador
 	include "pages/components/metricas_lider.php";
+	include "pages/components/productiviad_recursos_lider.php";
 }
 if($rol == 4){ //administrador
 	include "pages/components/metricas_ingeniero.php";

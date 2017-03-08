@@ -75,12 +75,12 @@ order by  r.fecha_inicio desc
 					</thead>
 					<tbody>
                                                 <?php
-																																																
-																																																if ($consulta = $wish->conexion->query ( $consulta )) {
-																																																	while ( $obj = $consulta->fetch_object () ) 
 
-																																																	{
-																																																		?>
+						if ($consulta = $wish->conexion->query ( $consulta )) {
+							while ( $obj = $consulta->fetch_object () ) 
+
+							{
+								?>
                                                 <tr>
 							<td><?php printf($obj->actividad);?></td>
 							<td><?php printf($obj->proyecto);?></td>

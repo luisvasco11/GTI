@@ -77,5 +77,8 @@ ALTER TABLE `registro_actividad` ADD COLUMN `cedula` VARCHAR(45) NULL AFTER `tie
 -- 4. actualizar cedulas en registro_actividad
 update registro_actividad p set cedula = (select u.cedula from new_usuario u where u.id = p.user_id )
 
+ALTER TABLE `gti`.`registro_actividad` 
+CHANGE COLUMN `id_contrato` `id_contrato` VARCHAR(45) NOT NULL ;
+
 
 -- Carlos lopez 07/03/2017 - aplicado arus
