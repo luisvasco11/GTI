@@ -53,7 +53,7 @@ $consulta = "SELECT
              a.categoria,
              a.actividad,
              a.plataforma,
-             p.proyecto,
+             p.nombre as proyect,
              r.descripcion,
              r.fecha_inicio,
              r.numerotiquete,
@@ -62,19 +62,16 @@ $consulta = "SELECT
              r.tiempoReal,
              r.estado,
              u.correo
-
              FROM registro_actividad r,
                   actividad a,
-                  proyecto p,
+                  new_proyectos p,
                   new_personas u
-
              where a.id = r.id_actividad and
                      u.cedula= r.cedula and
-                     u.jefe='$userinfo->user_id' and
-                     r.id_contrato = p.id and
+                     cast(u.jefe as int)='$userinfo->user_id' and
+                     r.id_contrato = p.codigo and
                      r.estado ='P'
-                    order by  r.fecha_inicio desc
-                    ";
+                    order by  r.fecha_inicio desc;";
 
 ?>
 
