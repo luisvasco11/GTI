@@ -170,12 +170,33 @@ UPDATE `gti`.`proyecto` SET `codigo`='C-G013-01' WHERE `id`='113';
 
 
 update gti.registro_actividad r
-set id_contrato = (select codigo from proyecto p where p.id = r.id_contrato);
+set id_contrato = (select codigo from proyecto p where p.id = r.id_contrato)
+where r.id >= 58158
 
 
  update gti.registro_actividad r
  set id_contrato = (select proyecto from new_personas p where p.cedula = r.cedula)
-where id_contrato = '';
+where id_contrato = '' and r.id >= 58158
+;
 
 
 update registro_actividad p set cedula = (select u.cedula from new_usuario u where u.id = p.user_id )
+
+
+
+
+-- se insertan los contratos trabajados por los analistas en la relacion lider_contratos
+insert into new_lider_contratos (codigo,alias,id_lider)
+select
+codigo,nombre as alias,jefe as id_lider
+from
+(select 
+ id_contrato,jefe, count(id_contrato) cantidad
+from
+(select 
+r.*,
+(select p.jefe from new_personas p where p.cedula = r.cedula) jefe
+from registro_actividad r WHERE fecha_inicio between '2017-01-01' and '2017-03-01') r
+where cast(jefe as int) = '<lider>' group by id_contrato) c, new_proyectos p
+where c.id_contrato = p.codigo
+order by cantidad
