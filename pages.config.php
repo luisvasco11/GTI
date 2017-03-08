@@ -21,6 +21,9 @@ $_PAGE_PERMISSIONS = array(
 			"013" => false,
 			"015" => false,
 			"016" => false,
+			"001" => false,
+			"003" => false,
+			"008" => false,
 	),
 	"3" => array(
 			"005" => false,
@@ -38,7 +41,18 @@ $_PAGE_PERMISSIONS = array(
 	),
 	"4" => array(
 		
-	)
+	),
+	"5" => array(
+			"017" => false,
+			"018" => false,
+			"012" => false,
+			"013" => false,
+			"015" => false,
+			"016" => false,
+			"001" => false,
+			"003" => false,
+			"008" => false,
+	),
 );
 
 // Pagina Actual : 016

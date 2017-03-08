@@ -1,7 +1,7 @@
 function validacion(formulario) {
 	console.log("validando insert");
-    	 if (formulario.tiempoReal.value > 180 || formulario.tiempoReal.value < 10 ) {
-             alert('El tiempo de las actividades debe estar en el rango de 10 a 180 minutos');
+    	 if (formulario.tiempoReal.value > 180 || formulario.tiempoReal.value < 5 ) {
+             alert('El tiempo de las actividades debe estar en el rango de 5 a 180 minutos');
              return false
            }   
 }
