@@ -141,7 +141,7 @@ while ( $row = $re->fetch_object () ) {
 							</div>
 
 							<div class="form-group">
-								<label>Tiempo Real</label>
+								<label>Tiempo Real  (minutos)</label>
 
 								<div class="input-group" style="width: 50%;">
 									<input type="number" id="tiempoReal" name="tiempoReal"

@@ -4,18 +4,24 @@
 $fechainicio = '2017-02-01';
 $fechafin = '2017-03-01';
 $consulta = "select `r`.`id_actividad` AS `id_actividad`,`a`.`plataforma` AS `plataforma`,`a`.`categoria` AS `categoria`,`a`.`actividad` AS `actividad`
-,`r`.`user_id` AS `user_id`
-,`d`.`nombre` AS `nombre`
-,(select area from areas where id=`d`.`area`)Namearea
+,`r`.`cedula` AS `cedula`
+,(select area from areas where id=`d`.`area`) AS Namearea
 ,`d`.`area` AS `area`
 ,`r`.`fecha_inicio` AS `fecha_inicio`
 ,`r`.`tiempoReal` AS `tiempoReal`
+,(select nombre from new_personas where cedula = r.cedula) AS nombre
 ,`r`.`descripcion` AS `descripcion`
 ,`r`.`id_contrato` AS `id_contrato`
 ,`p`.`proyecto` AS `proyecto`
-from (((`registro_actividad` `r` join `actividad` `a`) join `usuario` `d`) join `proyecto` `p`)
-where ((`r`.`fecha_inicio` > '$fechainicio' 
-and `r`.`fecha_inicio` < '$fechafin'   ) and (`r`.`id_actividad` = `a`.`id`) and (`r`.`id_contrato` = `p`.`id`) and (`r`.`user_id` = `d`.`id`) and (`r`.`estado` = 'F') and (`d`.`area`  <> 0 )) order by `r`.`fecha_inicio` asc";
+from (((`registro_actividad` `r` join `actividad` `a`) join `new_usuario` `d`) join `proyecto` `p`)
+where ((`r`.`fecha_inicio` > '$fechainicio'
+and `r`.`fecha_inicio` < '$fechafin'   ) 
+and (`r`.`id_actividad` = `a`.`id`) 
+and (`r`.`id_contrato` = `p`.`id`) 
+and (`r`.`cedula` = `d`.`cedula`) 
+and (`r`.`estado` = 'F') 
+and (`d`.`area`  <> 0 )) 
+order by `r`.`fecha_inicio` asc";
 
 
 $_REPORTS_CONFIG = array(
@@ -42,10 +48,10 @@ $_REPORTS_CONFIG = array(
 				"query" => $consulta,
 				"columnas" => array(
 						"fecha_inicio" => "Fecha Inicio",
+						"nombre" => "Colaborador",
 						"plataforma" => "Plataforma",
 						"categoria" => "Categoria",
 						"actividad" => "Actividad",
-						"nombre" => "Nombre",
 						"Namearea" => "Area",
 						"tiempoReal" => "Tiempo Real",
 						"proyecto" => "Proyecto",

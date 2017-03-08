@@ -1,20 +1,22 @@
 <?php
-		function printColaboradores($lider) {
-			$consulta = "select nombre,
+		function printColaboradores($lider,$conn) {
+			$consulta = "select nombre,cargo,celular,
 			(select avg(r.tiempo_calculado) from registro_actividad r where r.cedula = p.cedula and MONTH(r.fecha_inicio) = MONTH(NOW())  ) prod,
 			(select count(r.tiempo_calculado) from registro_actividad r where r.cedula = p.cedula and MONTH(r.fecha_inicio) = MONTH(NOW()) ) cantidad,
 			cedula from new_personas p where CAST(p.jefe AS INTEGER) = '$lider' order by prod desc";
-			if ($consulta = $wish->conexion->query ( $consulta )) {
+			if ($consulta = $conn->conexion->query ( $consulta )) {
 				while ( $obj = $consulta->fetch_object () ) {
 					?>
 	                                    <tr>
 											<td><a class="glyphicon glyphicon-user"></a></td>
 											<td><?php printf($obj->nombre);?></td>
+											<td><?php printf($obj->cargo);?></td>
+											<td><?php printf($obj->celular);?></td>
 											<td><?php printf($obj->prod);?></td>
 											<td><?php printf($obj->cantidad);?></td>
 										</tr>
 	                              		<?php
-	                              		printColaboradores($obj->cedula);
+	                              		//printColaboradores($obj->cedula,$conn);
 					}
 					$consulta->close ();
 			}
@@ -56,12 +58,14 @@
 									<tr>
 										<th></th> 
 										<th>Nombre</th>
+										<th>Cargo</th>
+										<th>Celular</th>
 										<th>Productividad</th>
 										<th>N° Actividades</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php printColaboradores($lider); ?>
+									<?php printColaboradores($userinfo->user_id,$wish); ?>
                                 </tbody>
 							</table>
 						</div>
