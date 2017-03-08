@@ -7,7 +7,7 @@ if($rol == 2){ //analista
 	include "pages/components/metricas_ingeniero.php";
 	include "pages/components/reloj.php";
 }
-if($rol == 3){ //cordinador
+if($rol == 3){ //auditor
 	include "pages/components/metricas_lider.php";
 	include "pages/components/productiviad_recursos_lider.php";
 }
