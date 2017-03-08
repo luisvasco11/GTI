@@ -1,10 +1,26 @@
 <?php
-
-$consulta = "select nombre,
-(select avg(r.tiempo_calculado) from registro_actividad r where r.cedula = p.cedula and MONTH(r.fecha_inicio) = MONTH(NOW())  ) prod,
-(select count(r.tiempo_calculado) from registro_actividad r where r.cedula = p.cedula and MONTH(r.fecha_inicio) = MONTH(NOW()) ) cantidad
-from new_personas p where p.jefe = '$userinfo->user_id' order by prod desc";
-
+		function printColaboradores($lider) {
+			$consulta = "select nombre,
+			(select avg(r.tiempo_calculado) from registro_actividad r where r.cedula = p.cedula and MONTH(r.fecha_inicio) = MONTH(NOW())  ) prod,
+			(select count(r.tiempo_calculado) from registro_actividad r where r.cedula = p.cedula and MONTH(r.fecha_inicio) = MONTH(NOW()) ) cantidad,
+			cedula from new_personas p where CAST(p.jefe AS INTEGER) = '$lider' order by prod desc";
+			if ($consulta = $wish->conexion->query ( $consulta )) {
+				while ( $obj = $consulta->fetch_object () ) {
+					?>
+	                                    <tr>
+											<td><a class="glyphicon glyphicon-user"></a></td>
+											<td><?php printf($obj->nombre);?></td>
+											<td><?php printf($obj->prod);?></td>
+											<td><?php printf($obj->cantidad);?></td>
+										</tr>
+	                              		<?php
+	                              		printColaboradores($obj->cedula);
+					}
+					$consulta->close ();
+			}
+			
+		}
+	
 ?>
 
 
@@ -38,39 +54,19 @@ from new_personas p where p.jefe = '$userinfo->user_id' order by prod desc";
 							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th></th>
+										<th></th> 
 										<th>Nombre</th>
 										<th>Productividad</th>
 										<th>N° Actividades</th>
 									</tr>
 								</thead>
 								<tbody>
-                                            <?php
-																																												
-																																												if ($consulta = $wish->conexion->query ( $consulta )) {
-																																													while ( $obj = $consulta->fetch_object () ) {
-																																														?>
-                                            <tr>
-										<td><a class="glyphicon glyphicon-user"></a></td>
-										<td><?php printf($obj->nombre);?></td>
-										<td><?php printf($obj->prod);?></td>
-										<td><?php printf($obj->cantidad);?></td>
-									</tr>
-                                            <?php
-																																													}
-																																													$consulta->close ();
-																																												}
-																																												?>
-                                        </tbody>
+									<?php printColaboradores($lider); ?>
+                                </tbody>
 							</table>
 						</div>
 					</div>
 					<!-- /.TABLA DE DATA TABLE -->
-
-
-
-
-
 				</div>
 				<!-- /.row -->
 			</div>
