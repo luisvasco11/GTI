@@ -1,3 +1,9 @@
+<script src="plugins/datetimepicker/js/bootstrap-datetimepicker.es.js"></script>
+<script src="plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<link href="plugins/datetimepicker/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="plugins/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+
 
 <form method="post" action="">
 	<div class="row">
@@ -35,7 +41,7 @@
 								<i class="fa fa-calendar"></i>
 							</div>
 							<input id="fecha_inicio" name="fecha_inicio" required value=""
-								type="datetime-local" class="form-control" required>
+								type="text" class="form-control" required>								
 						</div>
 					</div>
 
@@ -46,7 +52,8 @@
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
-							<input id="fecha_fin" name="fecha_fin" type="datetime-local"
+							
+							<input id="fecha_fin" name="fecha_fin" type="text"
 								class="form-control" required>
 						</div>
 					</div>
@@ -57,7 +64,7 @@
 							<div class="input-group-addon">
 								<i class="fa fa-commenting"></i>
 							</div>
-							<textarea id="comentario" name="comentario" class="form-control"
+							<textarea id="comentario" name="comentario"  class="form-control"
 								required></textarea>
 						</div>
 					</div>
@@ -74,3 +81,24 @@
 		<!-- /.box -->
 	</div>
 </form>
+
+
+
+
+
+<script type="text/javascript">
+    $("#fecha_inicio").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        todayBtn: true,
+        
+    });
+</script> 
+
+
+<script type="text/javascript">
+    $("#fecha_fin").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        autoclose: true,
+        todayBtn: true, });    
+</script> 
