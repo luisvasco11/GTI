@@ -6,21 +6,25 @@ $_PAGE_PERMISSIONS = array(
 		"006" => false,
 		"017" => false,
 		"018" => false,
-			"012" => false,
-			"014" => false,
-			"013" => false,
-			"015" => false,
-			"016" => false,
+		"012" => false,
+		"014" => false,
+		"013" => false,
+		"015" => false,
+		"016" => false,
 	),
 	"2" => array(
 		"011" => false,
 		"010" => false,
 		"017" => false,
 		"018" => false,
-			"012" => false,
-			"013" => false,
-			"015" => false,
-			"016" => false,
+		"012" => false,
+		"013" => false,
+		"015" => false,
+		"016" => false,
+		"001" => false,
+		"003" => false,
+		"008" => false,
+		"014" => false,
 	),
 	"3" => array(
 			"005" => false,
@@ -38,7 +42,19 @@ $_PAGE_PERMISSIONS = array(
 	),
 	"4" => array(
 		
-	)
+	),
+	"5" => array(
+			"017" => false,
+			"018" => false,
+			"012" => false,
+			"013" => false,
+			"015" => false,
+			"016" => false,
+			"001" => false,
+			"003" => false,
+			"008" => false,
+			"014" => false,
+	),
 );
 
 // Pagina Actual : 016

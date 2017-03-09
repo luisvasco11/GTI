@@ -32,6 +32,16 @@ $_REPORTS_CONFIG = array(
 				"columnaquery1" => "columnatabla1",
 				"columnaquery2" => "columnatabla2",
 				"columnaquery3" => "columnatabla3",
+			),
+			"filtros" => array(
+					"columnaquery1" => array(
+							"nombre" => "nombrecampoform",
+							"tipo" => "text"
+					),
+					"columnaquery2" => array(
+							"nombre" => "nombrecampoform",
+							"tipo" => "datetime"
+					),
 			)
 		),
 		"contratos" => array(
