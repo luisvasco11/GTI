@@ -1,9 +1,8 @@
 <?php
 
 // Reporte de productividad
-$fechainicio = '2017-02-01';
-$fechafin = '2017-03-01';
-$consulta = "select `r`.`id_actividad` AS `id_actividad`,`a`.`plataforma` AS `plataforma`,`a`.`categoria` AS `categoria`,`a`.`actividad` AS `actividad`
+$consulta = "select `r`.`id_actividad` AS `id_actividad`,`a`.`plataforma` AS `plataforma`,
+`a`.`categoria` AS `categoria`,`a`.`actividad` AS `actividad`
 ,`r`.`cedula` AS `cedula`
 ,(select area from areas where id=`d`.`area`) AS Namearea
 ,`d`.`area` AS `area`
@@ -12,12 +11,11 @@ $consulta = "select `r`.`id_actividad` AS `id_actividad`,`a`.`plataforma` AS `pl
 ,(select nombre from new_personas where cedula = r.cedula) AS nombre
 ,`r`.`descripcion` AS `descripcion`
 ,`r`.`id_contrato` AS `id_contrato`
-,`p`.`proyecto` AS `proyecto`
-from (((`registro_actividad` `r` join `actividad` `a`) join `new_usuario` `d`) join `proyecto` `p`)
-where ((`r`.`fecha_inicio` > '$fechainicio'
-and `r`.`fecha_inicio` < '$fechafin'   ) 
-and (`r`.`id_actividad` = `a`.`id`) 
-and (`r`.`id_contrato` = `p`.`id`) 
+,`p`.`codigo` AS `proyecto`
+from (((`registro_actividad` `r` join `actividad` `a`) join `new_usuario` `d`) join `new_proyectos` `p`)
+where (  ( `r`.`fecha_inicio` > '<filtro1>' and `r`.`fecha_inicio` < '<filtro2>'   ) 
+ (`r`.`id_actividad` = `a`.`id`) 
+and (`r`.`id_contrato` = `p`.`codigo`) 
 and (`r`.`cedula` = `d`.`cedula`) 
 and (`r`.`estado` = 'F') 
 and (`d`.`area`  <> 0 )) 
@@ -65,6 +63,17 @@ $_REPORTS_CONFIG = array(
 						"Namearea" => "Area",
 						"tiempoReal" => "Tiempo Real",
 						"proyecto" => "Proyecto",
+				),
+				"filtros" => array(
+						"filtro1" => array(
+								"nombre" => "nombrecampoform",
+								"tipo" => "text"
+						),
+						"filtro2" => array(
+								"nombre" => "nombrecampoform",
+								"tipo" => "datetime"
+						),
 				)
-		)
+				)
+		
 );
