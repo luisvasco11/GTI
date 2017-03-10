@@ -24,7 +24,7 @@ $_PAGE_PERMISSIONS = array(
 		"001" => false,
 		"003" => false,
 		"008" => false,
-		"014" => false,
+		"002" => false,
 	),
 	"3" => array(
 			"005" => false,
@@ -57,7 +57,7 @@ $_PAGE_PERMISSIONS = array(
 	),
 );
 
-// Pagina Actual : 016
+// Pagina Actual : 021
 
 $_PAGE_CONFIG = array(
 		//000 siempre es la home
@@ -209,7 +209,10 @@ $_PAGE_CONFIG = array(
 				"menu" => "Reportes",
 				"submenu" => array(
 						"page1" => "003",
-						"page2" => "008"
+						"page2" => "008",
+						"page3" => "019",
+						"page4" => "020",
+						"page5" => "021"
 				)
 		),
 		"003" => array(
@@ -229,6 +232,33 @@ $_PAGE_CONFIG = array(
 				"menu" => "Productividad",
 				"menu_css_class" => "fa-file-pdf-o",
 				"link" => "pages/reportes/productividad/body.php"
+		),
+		"019" => array(
+				"show" => true,
+				"isSubmenu" => true,
+				"big" => "Reportes",
+				"small" => "Grafico Productividad",
+				"menu" => "Grafico Productividad",
+				"menu_css_class" => "fa-file-pdf-o",
+				"link" => "pages/reportes/grafico_productividad/body.php"
+		),
+		"020" => array(
+				"show" => true,
+				"isSubmenu" => true,
+				"big" => "Reportes",
+				"small" => "Grafico Productividad Personas",
+				"menu" => "Grafico Prod. Personas",
+				"menu_css_class" => "fa-file-pdf-o",
+				"link" => "pages/reportes/grafico_productividad_personas/body.php"
+		),
+		"021" => array(
+				"show" => true,
+				"isSubmenu" => true,
+				"big" => "Reportes",
+				"small" => "Historico de actividades diarias",
+				"menu" => "Grafico Hist. Act.",
+				"menu_css_class" => "fa-file-pdf-o",
+				"link" => "pages/reportes/grafico_histo_actividades/body.php"
 		),
 		"002" => array(
 			"show" => true,

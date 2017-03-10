@@ -5,7 +5,12 @@
 
 
 
-<form method="post" action="">
+<form method="post" action="pages/backend/registro_ausentismo.php">
+
+
+<input type="hidden" name="user_id" value="<?php echo $userinfo->user_id;?>">
+<input type="hidden" name="proyecto" value="<?php echo $userinfo->proyecto;?>">
+
 	<div class="row">
 		<div class="col-md-12">
 
@@ -25,35 +30,35 @@
 							</div>
 							<select id="ausentismo" name="ausentismo"
 								class="form-control select2" style="width: 100%;" required>
-								<option value="0"></option>
-								<option value="1">Vacaciones</option>
-								<option value="2">Permiso</option>
-								<option value="3">Incapacidad</option>
-								<option value="4">Evento corporativo</option>
+								<option value="Vacaciones">Vacaciones</option>
+								<option value="Permiso">Permiso</option>
+								<option value="Incapacidad">Incapacidad</option>
+								<option value="Evento corporativo">Evento corporativo</option>
+								<option value="Descanso por turnos">Descanso por turnos</option>
 							</select>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label>Fecha y hora inicio</label>
+						<label>Fecha y hora inicio (Este dia no estabas en la compañía)</label>
 						<div class="input-group">
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
 							<input id="fecha_inicio" name="fecha_inicio" required value=""
-								type="text" class="form-control" required>								
+								type="date" class="form-control" required>								
 						</div>
 					</div>
 
 
 					<div class="form-group">
-						<label>Fecha y hora fin</label>
+						<label>Fecha y hora fin (Este dia regresaste a la compañía)</label>
 						<div class="input-group">
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
 							</div>
 							
-							<input id="fecha_fin" name="fecha_fin" type="text"
+							<input id="fecha_fin" name="fecha_fin" type="date"
 								class="form-control" required>
 						</div>
 					</div>
@@ -72,7 +77,7 @@
 
 					<button type="submit" class="btn btn-success" style="width: 150px;">Guardar</button>
 
-					<a href="#"><button type="button" class="btn btn-danger"
+					<a href="index.php"><button type="button" class="btn btn-danger"
 							style="width: 150px;">Cancelar</button></a>
 				</div>
 			</div>
@@ -83,22 +88,3 @@
 </form>
 
 
-
-
-
-<script type="text/javascript">
-    $("#fecha_inicio").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii',
-        autoclose: true,
-        todayBtn: true,
-        
-    });
-</script> 
-
-
-<script type="text/javascript">
-    $("#fecha_fin").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii',
-        autoclose: true,
-        todayBtn: true, });    
-</script> 

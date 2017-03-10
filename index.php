@@ -19,6 +19,7 @@ $userinfo->lider_id = $_SESSION['lider_id'];
 $userinfo->user_name = ucwords(strtolower($_SESSION['user_name']));
 $userinfo->area = $_SESSION['area'];
 $userinfo->rol =$_SESSION['rol'];
+$userinfo->proyecto =$_SESSION['proyecto'];
 $userinfo->cargo =ucwords(strtolower($_SESSION['cargo']));
 
 

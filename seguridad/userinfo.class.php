@@ -8,6 +8,7 @@ class UserInfo  {
 	public $area;
 	public $lider_id;
 	public $cargo;
+	public $proyecto;
 	
 }
 

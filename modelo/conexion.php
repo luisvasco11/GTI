@@ -5,6 +5,7 @@ class conexion {
 	private $usuario = "root";
 	private $pass = "pruebas48";
 	private $db = "gti";
+	public $pdo_conn;
 
 	
 	public function __construct() {
@@ -15,6 +16,7 @@ class conexion {
 			die ( "Fallo al tratar de conectar con MySQL: (" . $this->conexion->connect_errno . ")" );
 		}
 		$this->conexion->query ( "SET NAMES 'utf8'" );
+		$this->pdo_conn = new PDO ( "mysql:host=$this->server;dbname=$this->db", $this->usuario, $this->pass );
 	}
 	public function cerrar() {
 		$this->conexion->close ();
@@ -212,6 +214,36 @@ class conexion {
 		$ctrl = $ctrl_arr ["fecha_control"];
 		return $ctrl;
 	}
+	
+	
+	public function registrarAusentismo($user_id, $proyecto, $fecha_inicio, $fecha_fin, $tipo, $comentario) {
+		$query =	"insert into
+					registro_actividad (id_actividad,fecha_inicio,estado,tiempoReal,descripcion,id_contrato,cedula)
+					select
+					'8' as id_actividad,
+					date_format(v.selected_date,'%Y-%m-%d 07:30:00') as fecha_inicio,
+					'F' as estado,
+					'8.5' as tiempoReal,
+					'$tipo - $comentario' as descripcion,
+					'$proyecto' as id_proyecto,
+					'$user_id' as cedula
+					from
+					(select adddate('1970-01-01',t4.i*10000 + t3.i*1000 + t2.i*100 + t1.i*10 + t0.i) selected_date from
+							(select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+							(select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+							(select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+							(select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+							(select 0 i union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+							where v.selected_date between '$fecha_inicio' and '$fecha_fin' - INTERVAL 1 DAY
+							and DATE_FORMAT(v.selected_date,'%w') <> 0
+							and DATE_FORMAT(v.selected_date,'%w') <> 6";
+		
+		$consulta = $this->conexion->query ( $query );
+	}
+	
+	
+	
+
 	
 	
 
