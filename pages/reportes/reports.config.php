@@ -1,7 +1,7 @@
 <?php
 
 // Reporte de productividad
-$consulta = "select `r`.`id_actividad` AS `id_actividad`,`a`.`plataforma` AS `plataforma`,
+/*$consulta = "select `r`.`id_actividad` AS `id_actividad`,`a`.`plataforma` AS `plataforma`,
 `a`.`categoria` AS `categoria`,`a`.`actividad` AS `actividad`
 ,`r`.`cedula` AS `cedula`
 ,(select area from areas where id=`d`.`area`) AS Namearea
@@ -22,7 +22,27 @@ and (`d`.`area`  <> 0 )
 		) 
 having 
 		Namearea like '%<filtro3>%'
-order by `r`.`fecha_inicio` asc";
+order by `r`.`fecha_inicio` asc";*/
+
+$consulta = "select DATE_FORMAT(fecha_inicio,'%m-%d-%Y') fecha,
+r.cedula,
+u.correo,
+(select nombre from new_personas p where p.cedula = r.cedula ) nombre,
+(select proyecto from new_personas p where p.cedula = r.cedula ) contrato,
+a.area,
+'8.5' as horas_programadas,
+round(sum(tiempoReal)/60,2) as horas_laboradas
+from registro_actividad r, areas a, new_usuario u
+where fecha_inicio between '<filtro1>' and '<filtro2>'
+and u.cedula = r.cedula
+and a.id = u.area
+and r.cedula <> ''
+and a.area like '%<filtro4>%'
+group by r.cedula, fecha
+having correo like '%<filtro3>%'
+order by fecha,r.cedula
+limit 0,20000;";
+
 
 // el query debe retornar un campo con nombre columna y otro numerico
 $consulta2 = "SELECT 
@@ -92,27 +112,31 @@ $_REPORTS_CONFIG = array(
 				"titulo" => "Reporte de Productividad",
 				"query" => $consulta,
 				"columnas" => array(
-						"fecha_inicio" => "Fecha Inicio",
-						"nombre" => "Colaborador",
-						"plataforma" => "Plataforma",
-						"categoria" => "Categoria",
-						"actividad" => "Actividad",
-						"Namearea" => "Area",
-						"tiempoReal" => "Tiempo Real",
-						"proyecto" => "Proyecto",
+						"contrato" => "Código de Proyecto",
+						"cedula" => "Cédula",
+						"nombre" => "Nómbre",
+						"fecha" => "Fecha",
+						"horas_programadas" => "Horas Programadas",
+						"horas_laboradas" => "Horas Laboradas",
 				),
 				"filtros" => array(
 						"filtro1" => array(
 								"nombre" => "Fecha Inicio",
-								"tipo" => "date"
+								"tipo" => "date",
 						),
 						"filtro2" => array(
 								"nombre" => "Fecha Fin",
 								"tipo" => "date"
 						),
 						"filtro3" => array(
-								"nombre" => "Area",
+								"nombre" => "Correo",
 								"tipo" => "text",
+								"requerido" => false
+						),
+						"filtro4" => array(
+								"nombre" => "Area",
+								"tipo" => "select",
+								"query_select" => "select area as value,area as display from areas",
 								"requerido" => false
 						),
 				)
