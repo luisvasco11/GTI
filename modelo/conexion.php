@@ -223,7 +223,7 @@ class conexion {
 					'8' as id_actividad,
 					date_format(v.selected_date,'%Y-%m-%d 07:30:00') as fecha_inicio,
 					'F' as estado,
-					'8.5' as tiempoReal,
+					'510' as tiempoReal,
 					'$tipo - $comentario' as descripcion,
 					'$proyecto' as id_proyecto,
 					'$user_id' as cedula
