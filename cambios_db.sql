@@ -200,3 +200,21 @@ from registro_actividad r WHERE fecha_inicio between '2017-01-01' and '2017-03-0
 where cast(jefe as int) = '<lider>' group by id_contrato) c, new_proyectos p
 where c.id_contrato = p.codigo
 order by cantidad
+
+
+
+
+
+
+CREATE VIEW `productividad_historica` AS 
+select `r`.`fecha_inicio` AS `fecha_inicio`,`r`.`tiempoReal` AS `tiempoReal`,`a`.`categoria` AS `categoria`,
+`d`.`correo` AS `correo`,
+(select `ar`.`area` from `areas` `ar`
+ where (`d`.`area` = `ar`.`id`)) AS `area` 
+ from ((`registro_actividad` `r` left join `actividad` `a` 
+	on((`a`.`id` = `r`.`id_actividad`))) left join `new_usuario` `d` 
+    on((`d`.`cedula` = `r`.`cedula`))) where (`r`.`estado` = 'F') 
+order by `r`.`estado` desc;
+
+
+

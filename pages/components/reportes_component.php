@@ -11,9 +11,14 @@
 	href="https://cdn.datatables.net/1.10.12/css/dataTables.semanticui.min.css"
 	rel="stylesheet" />
 
+<?php 
+include 'pages/components/reportes_filtros.php';
+?>
 
 <script>
-            document.getElementById("inicio").disabled = true;             
+
+	document.getElementById("inicio").disabled = true;       
+                  
             $(document).ready(function() {
                 $('#zctb').DataTable( {
                     "aaSorting": [[ 1, "desc" ]]
@@ -29,59 +34,76 @@
 
 
 
-                   
 
 <div class="panel-body">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
-      <div class="box-header">
-              <h3 class="box-title"><?php echo $titulo; ?></h3>
-            </div>
+				<div class="box-header">
+					<h3 class="box-title"><?php echo $titulo; ?></h3>
+				</div>
+
+            	<?php
+													if ($filtros != false) {
+														printFilterModal ( $filtros, $page );
+													}
+													
+													?>
+          
+                <?php
+																
+																	if (isset ( $_POST ["filtered"] ) || $filtros == false) {
+																		?>
+            	<?php $query = applyFilters($query,$filtros); ?>
+            	
+            
 				<div class="box-body">
 					<table id="dataTable-<?php echo $report;?>"
 						class="table table-bordered table-striped">
 						<thead>
 							<tr>
-                <?php
-																
-foreach ( $columns as $col => $show_col ) {
-																	?>
-														<th><?php printf($show_col)?></th>
-													<?php
-																}
-																?>
-                </tr>
-						</thead>
-						<tbody>
-                <?php
-																
-																if ($consulta = $wish->conexion->query ( $query )) {
-																	while ( $arr = $consulta->fetch_array () ) 
-
-																	{
-																		?>
-												<tr>
-													<?php
+							                <?php
 																		
-foreach ( $columns as $col => $show_col ) {
+																		foreach ( $columns as $col => $show_col ) {
 																			?>
-														<td><?php printf($arr[$col])?></td>
-													<?php
+							<th><?php printf($show_col)?></th>
+							<?php
 																		}
 																		?>
-													 
-												</tr>
-												<?php
-																	
-}
-																	$consulta->close ();
-																}
-																?>
-                </tbody>
+							                </tr>
+						</thead>
+						<tbody>
+							                <?php
+																		
+																		if ($consulta = $wish->conexion->query ( $query )) {
+																			while ( $arr = $consulta->fetch_array () ) 
+
+																			{
+																				?>
+							<tr>
+								<?php
+																				
+																				foreach ( $columns as $col => $show_col ) {
+																					?>
+							<td><?php printf($arr[$col])?></td>
+							<?php
+																				}
+																				?>
+								 
+							</tr>
+							<?php
+																			}
+																			$consulta->close ();
+																		}
+																		?>
+							                </tbody>
 
 					</table>
 				</div>
+				<?php
+																	
+																}
+																?>
 			</div>
 		</div>
 	</div>
