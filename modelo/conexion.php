@@ -223,9 +223,6 @@ class conexion {
 					'8' as id_actividad,
 					date_format(v.selected_date,'%Y-%m-%d 07:30:00') as fecha_inicio,
 					'F' as estado,
-<<<<<<< HEAD
-					'8.5' as tiempoReal,
-=======
 					'510' as tiempoReal,
 >>>>>>> refs/heads/pruebas
 					'$tipo - $comentario' as descripcion,
