@@ -26,7 +26,8 @@ function printTextFilter($filter, $nombre, $requerido) {
 		<div class="input-group-addon">
 			<i class="fa fa-file-text-o" aria-hidden="true"></i>
 		</div>
-		<input name="<?php echo $filter;?>" type="text" class="form-control"  <?php echo $requerido ?>>
+		<input name="<?php echo $filter;?>" type="text" class="form-control"
+			<?php echo $requerido ?>>
 	</div>
 	<!-- /.input group -->
 </div>
@@ -41,7 +42,8 @@ function printDateFilter($filter, $nombre, $requerido) {
 		<div class="input-group-addon">
 			<i class="fa fa-calendar"></i>
 		</div>
-		<input name="<?php echo $filter;?>" type="date" class="form-control"  <?php echo $requerido ?> >
+		<input name="<?php echo $filter;?>" type="date" class="form-control"
+			<?php echo $requerido ?>>
 	</div>
 	<!-- /.input group -->
 </div>
@@ -58,29 +60,57 @@ function printNumericFilter($filter, $nombre, $requerido) {
 		<div class="input-group-addon">
 			<i class="fa fa-phone"></i>
 		</div>
-		<input name="<?php echo $filter;?>" type="number" class="form-control" <?php echo $requerido ?>>
+		<input name="<?php echo $filter;?>" type="number" class="form-control"
+			<?php echo $requerido ?>>
 	</div>
 	<!-- /.input group -->
 </div>
 <?php
 }
-function printFilterModal($filtros,$page) {
+function printSelectFilter($filter, $nombre, $result, $requerido) {
+	?>
+<!-- phone mask -->
+<div class="form-group">
+	<label><?php echo $nombre;?>:</label>
+
+	<div class="input-group">
+		<div class="input-group-addon">
+			<i class="fa fa-list"></i>
+		</div>
+
+		<select class="form-control select2" style="width: 100%;"
+			id="<?php echo $filter;?>" name="<?php echo $filter;?>"
+			<?php echo $requerido ?>>
+
+			<option value="" id=""></option>
+					                  <?php
+	while ( $row = $result->fetch_object () ) {
+		?>
+					                   		<option value="<?php echo $row->value; ?>"><?php echo $row->display; ?></option>
+					                   <?php } ?>    
+					                </select>
+	</div>
+	<!-- /.input group -->
+</div>
+<?php
+}
+function printFilterModal($filtros, $page, $conn) {
 	?>
 <div class="panel-body">
 	<button class="btn btn-info" data-toggle="modal" data-target="#myModal">
 		<i class="fa fa-filter" aria-hidden="true"></i> Filtrar
 	</button>
 	
-	<?php 
+	<?php
 	
 	if (isset ( $_POST ["filtered"] )) {
 		echo "<p>";
 		foreach ( $filtros as $filtro => $value ) {
 			$val = $_POST [$filtro];
-			if($val == ''){
+			if ($val == '') {
 				$val = "NaN";
 			}
-			$nom = $value["nombre"];
+			$nom = $value ["nombre"];
 			echo "<br><strong>$nom :</strong> $val";
 		}
 		echo "</p>";
@@ -112,17 +142,21 @@ function printFilterModal($filtros,$page) {
 	foreach ( $filtros as $filtro => $params ) {
 		$tipo = $params ["tipo"];
 		$requerido = "required";
-		if(isset($params ["requerido"])){
-			if(!$params ["requerido"]){
+		if (isset ( $params ["requerido"] )) {
+			if (! $params ["requerido"]) {
 				$requerido = "";
 			}
 		}
 		if ($tipo == "date") {
-			printDateFilter ( $filtro, $params ["nombre"],$requerido );
+			printDateFilter ( $filtro, $params ["nombre"], $requerido );
 		} elseif ($tipo == "text") {
-			printTextFilter ( $filtro, $params ["nombre"],$requerido );
+			printTextFilter ( $filtro, $params ["nombre"], $requerido );
 		} elseif ($tipo == "numeric") {
-			printNumericFilter ( $filtro, $params ["nombre"],$requerido );
+			printNumericFilter ( $filtro, $params ["nombre"], $requerido );
+		} elseif ($tipo == "select") {
+			$query = $params ["query_select"];
+			$result = $conn->conexion->query ( $query );
+			printSelectFilter ( $filtro, $params ["nombre"], $result, $requerido );
 		}
 	}
 	?>
@@ -153,7 +187,6 @@ function printFilterModal($filtros,$page) {
 </div>
 <?php
 }
-
 function applyFilters($query, $filtros) {
 	if (isset ( $_POST ["filtered"] )) {
 		foreach ( $filtros as $filtro => $value ) {
