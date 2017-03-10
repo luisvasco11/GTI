@@ -1,29 +1,24 @@
 <?php
-// session_start ();
-// if ($_SESSION ['authenticated'] == 1) {
-// 	include("../../modelo/conexion.php");
+session_start ();
+if ($_SESSION ['authenticated'] == 1) {
 
-// $ausentismo  =$_POST['ausentismo'];
-// $fini  =$_POST['fecha_inicio'];
-// $ffin  =$_POST['fecha_fin'];
-// $com  =$_POST['comentario'];
+include("../../modelo/conexion.php");
 
+$ausentismo  =$_POST['ausentismo'];
+$fini  =$_POST['fecha_inicio'];
+$ffin  =$_POST['fecha_fin'];
+$com  =$_POST['comentario'];
+$user_id  =$_POST['user_id'];
+$proyecto  =$_POST['proyecto'];
 
-// $wish = new conexion; 
-// $wish->activarContrato($codigo,$alias,$lider);
-// $wish->cerrar(); 
+$wish = new conexion; 
+$wish->registrarAusentismo($user_id, $proyecto, $fini, $ffin, $ausentismo, $com);
+$wish->cerrar(); 
 
-// }
+header("Location: ../../index.php");
 
-// Create two new DateTime-objects...
-$date1 = new DateTime('2017-03-01');
-$date2 = new DateTime('2017-03-02');
+}
 
-// The diff-methods returns a new DateInterval-object...
-$diff = $date2->diff($date1);
-
-// Call the format method on the DateInterval-object
-echo $diff->format('%a Day and %h hours');
 
 
 ?>
