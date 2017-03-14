@@ -6,8 +6,6 @@ class conexion {
 	private $pass = "pruebas48";
 	private $db = "gti";
 	public $pdo_conn;
-
-	
 	public function __construct() {
 		$this->conexion = new mysqli ( $this->server, $this->usuario, $this->pass, $this->db );
 		
@@ -22,7 +20,6 @@ class conexion {
 		$this->conexion->close ();
 	}
 	public function login($correo, $password) {
-		
 		$query = "select p.cedula,p.nombre,u.id,p.proyecto,u.fecha_control,p.cargo,p.correo_personal,p.jefe,p.celular,u.rol from new_usuario u,new_personas p where u.correo = '$correo' and u.correo = p.correo and u.password = '$password' and u.estado='A'";
 		$consulta = $this->conexion->query ( $query );
 		$num = mysqli_num_rows ( $consulta );
@@ -115,17 +112,19 @@ class conexion {
 		$query = "delete from new_lider_contratos where codigo = '" . $codigo . "' and id_lider = '" . $lider . "';";
 		$consulta = $this->conexion->query ( $query );
 	}
-	/*public function registro_analista($nombre, $area, $correo, $pass, $horario, $lider) {
-		$this->nombre = $nombre;
-		$this->area = $area;
-		$this->correo = $correo;
-		$this->pass = $pass;
-		$this->horario = $horario;
-		$this->lider = $lider;
-		
-		$query = "INSERT INTO new_usuario (id,nombre,correo,horalaboral,area,lider,password,cargo_id,estado,ubicacion,educacion,habilidades) VALUES ('','" . $nombre . "','" . $correo . "','" . $horario . "','" . $area . "','" . $lider . "','" . $pass . "','2','A','','','')";
-		$consulta = $this->conexion->query ( $query );
-	}*/
+	/*
+	 * public function registro_analista($nombre, $area, $correo, $pass, $horario, $lider) {
+	 * $this->nombre = $nombre;
+	 * $this->area = $area;
+	 * $this->correo = $correo;
+	 * $this->pass = $pass;
+	 * $this->horario = $horario;
+	 * $this->lider = $lider;
+	 *
+	 * $query = "INSERT INTO new_usuario (id,nombre,correo,horalaboral,area,lider,password,cargo_id,estado,ubicacion,educacion,habilidades) VALUES ('','" . $nombre . "','" . $correo . "','" . $horario . "','" . $area . "','" . $lider . "','" . $pass . "','2','A','','','')";
+	 * $consulta = $this->conexion->query ( $query );
+	 * }
+	 */
 	public function getAreaByUserId($user_id) {
 		$queryArea = "select area from new_usuario where cedula=" . $user_id . "";
 		$resArea = $this->conexion->query ( $queryArea );
@@ -133,43 +132,119 @@ class conexion {
 		$area_user = $area_user->area;
 		return $area_user;
 	}
-	/*public function actualizarperfil1($nombre, $user_id, $ubicacion, $educacion) {
-		$query = "update new_usuario set nombre='" . $nombre . "',ubicacion='" . $ubicacion . "',educacion='" . $educacion . "' where id=" . $user_id . "";
-		
-		$consulta = $this->conexion->query ( $query );
-	}
-	public function actualizarperfil($nombre, $user_id, $ubicacion, $habilidades, $educacion) {
-		$query = "update usuario set nombre='" . $nombre . "',ubicacion='" . $ubicacion . "',educacion='" . $educacion . "', habilidades='" . $habilidades . "' where id=" . $user_id . "";
-		
-		$consulta = $this->conexion->query ( $query );
-	}*/
+	/*
+	 * public function actualizarperfil1($nombre, $user_id, $ubicacion, $educacion) {
+	 * $query = "update new_usuario set nombre='" . $nombre . "',ubicacion='" . $ubicacion . "',educacion='" . $educacion . "' where id=" . $user_id . "";
+	 *
+	 * $consulta = $this->conexion->query ( $query );
+	 * }
+	 * public function actualizarperfil($nombre, $user_id, $ubicacion, $habilidades, $educacion) {
+	 * $query = "update usuario set nombre='" . $nombre . "',ubicacion='" . $ubicacion . "',educacion='" . $educacion . "', habilidades='" . $habilidades . "' where id=" . $user_id . "";
+	 *
+	 * $consulta = $this->conexion->query ( $query );
+	 * }
+	 */
 	function mysqli_result($res, $row, $field = 0) {
 		$res->data_seek ( $row );
 		$datarow = $res->fetch_array ();
 		return $datarow [$field];
 	}
+	
+	
 	public function actualizarPersonasNomus() {
-		set_time_limit ( 1000 );
+		ini_set ( 'display_errors', 'On' );
+		set_time_limit ( 10000 );
 		include_once 'modelo/conexion_nomus.php';
 		$nomus = new NomusIntegracion ();
 		$personas = $nomus->getUsuariosNomus ();
-		$this->conexion->query ( "truncate table new_personas;" );
-		// print_r($personas);
+		$disable_query = "update new_personas set estado=2 where estado=0;";
+		$this->conexion->query ( $disable_query );
+		$disable_query = "update new_personas set estado=0 where estado=1;";
+		$this->conexion->query ( $disable_query );
 		foreach ( $personas as $key => $registro ) {
-			
 			$cedula = $registro ["CEDULA"];
 			$nombre = $registro ["NOMBRE"];
+			$nombre = str_replace ( "'", "", $nombre );
 			$correo = $registro ["CORREO_CORPORATIVO"];
 			$correo_personal = $registro ["CORREO_PERSONAL"];
 			$celular = $registro ["TEL_CELULAR"];
 			$cargo = $registro ["CARGO"];
 			$proyecto = $registro ["COD_PROYECTO"];
 			$jefe = $registro ["CEDULA_JEFE"];
-			$insert = "insert into new_personas (cedula,nombre,proyecto,cargo,jefe,correo,correo_personal,celular) 
- 		 			values('$cedula','$nombre','$proyecto','$cargo','$jefe','$correo','$correo_personal','$celular')";
-			$this->conexion->query ( $insert );
+			$persona_existe = $this->getUserByCedula ( $cedula );
+			$número_filas = mysqli_num_rows ( $persona_existe );
+			if ($número_filas == 1) {
+				// echo "<br>$nombre existe verificando novedades.. ";
+				$novedad = false;
+				$row = $persona_existe->fetch_object ();
+				$proyecto_nov = "";
+				$cargo_nov = "";
+				$jefe_nov = "";
+				$celular_nov = "";
+				if (trim ( $row->proyecto ) != trim ( $proyecto )) {
+					$proyecto_nov = ",proyecto = '$proyecto'";
+					$novedad = true;
+					$descripcion = "$nombre con cédula $cedula que pertenecía al proyecto $row->proyecto ahora pertenece al proyecto $proyecto";
+					$this->insertarNovedadPersonal ( "CAMBIO_PROYECTO", $proyecto, $cedula, $descripcion );
+					$this->insertarNovedadPersonal ( "CAMBIO_PROYECTO", $row->proyecto, $cedula, $descripcion );
+				}
+				if (trim ( $row->cargo ) != trim ( $cargo )) {
+					$cargo_nov = ",cargo = '$cargo'";
+					$novedad = true;
+					$descripcion = "$nombre con cédula $cedula cambia de cargo de $row->cargo a $cargo";
+					$this->insertarNovedadPersonal ( "CAMBIO_CARGO", $proyecto, $cedula, $descripcion );
+				}
+				if (trim ( $row->jefe ) != trim ( $jefe )) {
+					$jefe_nov = ",jefe = '$jefe'";
+					$novedad = true;
+					$descripcion = "$nombre con cédula $cedula cambia de jefe ahora es $jefe";
+					$this->insertarNovedadPersonal ( "CAMBIO_JEFE", $proyecto, $cedula, $descripcion );
+				}
+				if (trim ( $row->celular ) != trim ( $celular )) {
+					$celular_nov = ",celular = '$celular'";
+					$novedad = true;
+					$descripcion = "$nombre con cédula $cedula cambia de celular ahora es $celular";
+					$this->insertarNovedadPersonal ( "CAMBIO_CELULAR", $proyecto, $cedula, $descripcion );
+				}
+				if ($novedad) {
+					$update = "update new_personas set cedula='$cedula' $cargo_nov $proyecto_nov $jefe_nov $celular_nov where cedula = '$cedula' ";
+					$this->conexion->query ( $update );
+					// echo $update;
+				}
+				$enable_query = "update new_personas set estado=1 where cedula='$cedula';";
+				$this->conexion->query ( $enable_query );
+			} else {
+				$insert = "insert into new_personas (cedula,nombre,proyecto,cargo,jefe,correo,correo_personal,celular,estado) 
+	 		 			values('$cedula','$nombre','$proyecto','$cargo','$jefe','$correo','$correo_personal','$celular',1)";
+				$this->conexion->query ( $insert );
+				$descripcion = "$nombre con cédula $cedula con cargo $cargo ingresa a la compañía al proyecto $proyecto";
+				$this->insertarNovedadPersonal ( "NUEVO_INGRESO", $proyecto, $cedula, $descripcion );
+			}
 		}
+		
+		$inactives_query  = "select * from new_personas where estado=0";
+		$result = $this->conexion->query ( $inactives_query );
+		while($obj = $result->fetch_object()){
+			$descripcion = "$obj->nombre con cédula $obj->cedula del proyecto $obj->proyecto fué retirado de la compañía";
+			$this->insertarNovedadPersonal("NUEVO_RETIRO",$obj->proyecto,$obj->cedula,$descripcion);
+		}
+		$disable_query = "update new_personas set estado=0 where estado=2;";
+		$this->conexion->query ( $disable_query );
+		ini_set ( 'display_errors', 'Off' );
 	}
+	function insertarNovedadPersonal($tipo, $proyecto, $cedula, $descripcion) {
+		// echo "<br>$descripcion<br>";
+		$query = "insert into new_novedades (fecha,tipo,proyecto,cedula,descripcion) values (now(),'$tipo','$proyecto','$cedula','$descripcion')";
+		// echo $query;
+		$this->conexion->query ( $query );
+	}
+	function getUserByCedula($cedula) {
+		$query = "SELECT proyecto,cargo,jefe,correo_personal,celular FROM new_personas where cedula='$cedula'";
+		$persona = $this->conexion->query ( $query );
+		
+		return $persona;
+	}
+	
 	// Cantidad de analistas
 	function getColaboradoresFromLider($lider) {
 		$query = "SELECT COUNT(*) FROM new_personas where jefe='$lider'";
@@ -214,10 +289,8 @@ class conexion {
 		$ctrl = $ctrl_arr ["fecha_control"];
 		return $ctrl;
 	}
-	
-	
 	public function registrarAusentismo($user_id, $proyecto, $fecha_inicio, $fecha_fin, $tipo, $comentario) {
-		$query =	"insert into
+		$query = "insert into
 					registro_actividad (id_actividad,fecha_inicio,estado,tiempoReal,descripcion,id_contrato,cedula)
 					select
 					'8' as id_actividad,
@@ -240,23 +313,6 @@ class conexion {
 		
 		$consulta = $this->conexion->query ( $query );
 	}
-	
-	
-	
-
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
 ?>

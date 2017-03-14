@@ -157,7 +157,8 @@ $_REPORTS_CONFIG = array(
 						),
 						"filtro3" => array(
 								"nombre" => "Area",
-								"tipo" => "text",
+								"tipo" => "select",
+								"query_select" => "select area as value,area as display from areas",
 								"requerido" => false
 						),
 				)
