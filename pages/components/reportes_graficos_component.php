@@ -75,7 +75,7 @@ if (isset ( $_POST ["filtered"] ) && $filtros != false) {
 		<h3 class='box-title'><?php echo $titulo;?></h3>
 		<?php
 		if ($filtros != false) {
-			printFilterModal ( $filtros, $page );
+			printFilterModal ( $filtros, $page, $wish );
 		}
 		?>
 		<div class='box-tools pull-right'>

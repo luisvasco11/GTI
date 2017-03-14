@@ -45,7 +45,7 @@ include 'pages/components/reportes_filtros.php';
 
             	<?php
 													if ($filtros != false) {
-														printFilterModal ( $filtros, $page );
+														printFilterModal ( $filtros, $page, $wish);
 													}
 													
 													?>
