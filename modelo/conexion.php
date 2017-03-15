@@ -313,6 +313,23 @@ class conexion {
 		
 		$consulta = $this->conexion->query ( $query );
 	}
+	
+	public function updateHostsFromNagios(){
+		/*
+		 * 1. obtener la lista de funciones de la clase nagiosIntegration
+		 * 2. Recorrer las consolas obteniendo su conexión y obtener los hosts de cada conexion 
+		 * 		query: select distinct address, alias  from ndo.nagios_hosts
+		 * 3. Setear la tabla local de hosts de GTI para que todos los estados de los hosts que estan en 0 queden en 2
+		 * 4. Setear la tabla local de hosts de GTI para que todos los estados de los hosts que estan en 1 queden 0
+		 * 5. Recorrer cada host y revisar si estan en la tabla de hosts local
+		 * 		-> validar en cada host, su nombre, ip y consola
+		 * 		-> si no está, insertar el hostname, la ip y la consola, estado, en estado debe quedar un 1 (guardar novedad)
+		 * 		-> si está se actualiza el estado a 1
+		 * 6. Se consultan los hosts de la tabla de gti local donde los estados sean 0 y se guarda la novedad.
+		 * 7. Se acualizan todos los estados que estaban 2 a 0.
+		 */
+	}
+	
 }
 
 ?>
