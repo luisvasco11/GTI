@@ -1,9 +1,5 @@
 <?php
 
-$nagios = new NagiosIntegration;
-
-$nagios->getConnection("nagios1");
-
 class NagiosIntegration {
 	
 	public $consolas = array (
@@ -22,7 +18,7 @@ class NagiosIntegration {
 	);
 		
 	public function getConnection($conn){
-		$consola = $consolas[$con_name];
+		$consola = $this->consolas[$conn];
 		$conexion = new mysqli ( $consola ["ip"], $consola ["usr"], $consola ["pass"], "ndo" );
 		return $conexion;
 	}
