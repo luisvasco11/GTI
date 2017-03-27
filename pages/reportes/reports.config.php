@@ -74,6 +74,11 @@ where correo like '%<filtro3>%'
 group by date_format(fecha_inicio,'%m-%d-%Y') 
 order by columna;";
 
+$consulta5 = "SELECT fecha,tipo,proyecto,descripcion FROM new_novedades where
+			fecha > '<filtro1>'
+        and fecha < '<filtro2>'
+		and proyecto like '%<filtro3>%'
+        and tipo like '%<filtro4>%'";
 
 
 $_REPORTS_CONFIG = array(
@@ -208,6 +213,38 @@ $_REPORTS_CONFIG = array(
 								"query_select" => "select area as value,area as display from areas",
 								"requerido" => false
 						),
+				)
+		),
+		"novedades" => array(
+				"tipo" => "tabla",
+				"titulo" => "Reporte de Novedades",
+				"query" => $consulta5,
+				"columnas" => array(
+						"fecha" => "Fecha",
+						"tipo" => "Tipo de Novedad",
+						"proyecto" => "Código de Proyecto",
+						"descripcion" => "Descripción",
+				),
+				"filtros" => array(
+						"filtro1" => array(
+								"nombre" => "Fecha Inicio",
+								"tipo" => "date",
+						),
+						"filtro2" => array(
+								"nombre" => "Fecha Fin",
+								"tipo" => "date"
+						),
+						"filtro3" => array(
+								"nombre" => "Código de Proyecto",
+								"tipo" => "text",
+								"requerido" => false
+						),
+						"filtro4" => array(
+								"nombre" => "Tipo de Novedad",
+								"tipo" => "select",
+								"query_select" => "select distinct tipo as value, tipo as display from new_novedades",
+								"requerido" => false
+						)
 				)
 		)
 		

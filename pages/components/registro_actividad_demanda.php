@@ -9,18 +9,22 @@
 $query = "select actividad from actividad";
 $res = $wish->conexion->query ( $query );
 
-$query = "select id from actividad where area=8 or area=" . $userinfo->area . "";
+$query = "select id from actividad where  area='8' or area=" . $userinfo->area . "  order by id ";		  
 $re = $wish->conexion->query ( $query );
 $fila = mysqli_fetch_row ( $re );
+
 
 $query1 = "select id from actividad where area=" . $userinfo->area . "";
 $reimp = $wish->conexion->query ( $query1 );
 
+
 $query = "select * from proyecto";
 $rea = $wish->conexion->query ( $query );
 
+
 $query = "select categoria from actividad";
 $rep = $wish->conexion->query ( $query );
+
 
 $queryContratos = "SELECT codigo,alias FROM new_lider_contratos where id_lider = $lider_id;";
 $rContratos = $wish->conexion->query ( $queryContratos );

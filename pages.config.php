@@ -50,9 +50,7 @@ $_PAGE_PERMISSIONS = array(
 			"013" => false,
 			"015" => false,
 			"016" => false,
-			"001" => false,
-			"003" => false,
-			"008" => false,
+			
 	),
 );
 
@@ -211,7 +209,8 @@ $_PAGE_CONFIG = array(
 						"page2" => "008",
 						"page3" => "019",
 						"page4" => "020",
-						"page5" => "021"
+						"page5" => "021",
+						"page5" => "022"
 				)
 		),
 		"003" => array(
@@ -258,6 +257,15 @@ $_PAGE_CONFIG = array(
 				"menu" => "Grafico Hist. Act.",
 				"menu_css_class" => "fa-file-pdf-o",
 				"link" => "pages/reportes/grafico_histo_actividades/body.php"
+		),
+		"022" => array(
+				"show" => true,
+				"isSubmenu" => true,
+				"big" => "Reportes",
+				"small" => "Reporte de novedades",
+				"menu" => "Reporte de novedades",
+				"menu_css_class" => "fa-file-pdf-o",
+				"link" => "pages/reportes/novedades/body.php"
 		),
 		"002" => array(
 			"show" => true,

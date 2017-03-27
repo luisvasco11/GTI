@@ -108,9 +108,9 @@ $consulta = "SELECT
 									<tr>
 										<th>Correo</th>
 										<th>Actividad</th>
-										<th>Número Tiquete</th>
+										<th>Descripcion</th>
 										<th>Fecha Inicio</th>
-										<th>Duración</th>
+										<th>Duración</th>										
 										<th>Aprobar</th>
 										<th>Denegar</th>
 
@@ -128,7 +128,7 @@ $consulta = "SELECT
                                             <tr>
 										<td><?php printf($obj->correo);?></td>
 										<td><?php printf($obj->actividad);?></td>
-										<td><?php printf($obj->numerotiquete);?></td>
+										<td><?php printf($obj->descripcion);?></td>
 										<td><?php printf($obj->fecha_inicio);?></td>
 										<td><?php printf($obj->tiempoReal);?></td>
 										<td><a><input onclick="aprobar(<?php printf($obj->id);?>)"
