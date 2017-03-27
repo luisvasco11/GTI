@@ -50,9 +50,7 @@ $_PAGE_PERMISSIONS = array(
 			"013" => false,
 			"015" => false,
 			"016" => false,
-			"001" => false,
-			"003" => false,
-			"008" => false,
+			
 	),
 );
 
