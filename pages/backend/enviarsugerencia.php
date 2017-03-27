@@ -53,7 +53,7 @@ $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 $headers .= "From: Bitacora de operaciones <bitacora@arus.com.co>\r\n";  
         
 
-$this_mail = mail("carlos.lopezmo@arus.com.co", $asunto, $cuerpo, $headers);
+$this_mail = mail("luis.vasco@arus.com.co", $asunto, $cuerpo, $headers);
 
    
 header("Location: ../../index.php");
