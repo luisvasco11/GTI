@@ -7,12 +7,15 @@
 $query = "select actividad from actividad";
 $res = $wish->conexion->query ( $query );
 
-$query = "select id from actividad where  area='8' or area=" . $userinfo->area . "  order by id ";
+
+if($userinfo->area == 23){
+	$query = "select id from actividad where area=" . $userinfo->area . "";
+}else{
+	$query = "select id from actividad where  area='8' or area=" . $userinfo->area . "  order by id ";
+}
+
 $re = $wish->conexion->query ( $query );
 $fila = mysqli_fetch_row ( $re );
-
-$query1 = "select id from actividad where area=" . $userinfo->area . "";
-$reimp = $wish->conexion->query ( $query1 );
 
 $query = "select * from proyecto";
 $rea = $wish->conexion->query ( $query );
@@ -31,7 +34,6 @@ $rContratos = $wish->conexion->query ( $queryContratos );
 		<div class="box-body">
 			<form action="pages/backend/pendientes.php" method="POST"
 				onsubmit="return validacion(this)">
-
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -53,7 +55,7 @@ $rContratos = $wish->conexion->query ( $queryContratos );
 								name="id_contrato" class="form-control select2"
 								style="width: 100%;" required>
 								<option value="" id=""></option>            
-                  <?php																		
+                  <?php
 																		while ( $row = $rContratos->fetch_object () ) {
 																			?>
 
@@ -84,12 +86,13 @@ $rContratos = $wish->conexion->query ( $queryContratos );
 																	while ( $row = $re->fetch_object () ) {
 																		$row->id;
 																		?>
-
                     <option value="<?php echo $row->id; ?>"><?php echo $row->id; ?></option>
                     <?php } ?>  
                 </select>
 
 						</div>
+
+
 						<div class="form-group">
 							<label>N° Tiquete</label> <input type="text" id="numerotiquete"
 								name="numerotiquete" class="form-control">

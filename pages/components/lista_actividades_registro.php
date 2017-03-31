@@ -18,8 +18,13 @@
 
 
 <?php
-$consulta ="SELECT id,plataforma,categoria,actividad FROM actividad where area=8 or area=".$userinfo->area."";
 
+if($userinfo->area == 23){
+$consulta ="select id,plataforma,categoria,actividad from actividad where area=" . $userinfo->area . "";
+}else
+{
+$consulta ="SELECT id,plataforma,categoria,actividad FROM actividad where area=8 or area=".$userinfo->area."";
+}
 
 $editar=0;
 $editar_res=null;
