@@ -231,6 +231,7 @@ $_PAGE_CONFIG = array(
 				"menu_css_class" => "fa-file-pdf-o",
 				"link" => "pages/reportes/productividad/body.php"
 		),
+		
 		"019" => array(
 				"show" => true,
 				"isSubmenu" => true,

@@ -146,6 +146,7 @@ $_REPORTS_CONFIG = array(
 						),
 				)
 				),
+		
 		"grafico_productividad" => array(
 				"tipo" => "grafico",
 				"grafico" => "pie",
@@ -168,6 +169,7 @@ $_REPORTS_CONFIG = array(
 						),
 				)
 		),
+		
 		"grafico_productividad_personas" => array(
 				"tipo" => "grafico",
 				"grafico" => "pie",

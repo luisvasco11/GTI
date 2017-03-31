@@ -20,8 +20,7 @@ if ($_SESSION ['authenticated'] == 1) {
    body {  background-image: url(dist/img/login-bg.jpg); 
         
        
-       background-repeat: no-repeat;
-       
+       background-repeat: no-repeat;z       
         } 
     
     
@@ -37,17 +36,15 @@ if ($_SESSION ['authenticated'] == 1) {
 					
 					
 				</div>
-				
-				
+								
 			</div>
 			<div id="wrapper" class="big" style="max-width:600px;">
-				
-				
+							
 			</div>
         </header>
         <form class="form" style="max-width:400px;" action = "seguridad/login.php" method = "POST">
         
-				<span class="title">Login</span>
+				<span class="title">SISTEMA DE INFORMACIÓN GTI</span>
                 <p id="mensaje" style="color: red;"></p>
                 <div class="group">      
                   <input type="email" id="correo"  value="@arus.com.co" name="correo" required>
@@ -60,16 +57,12 @@ if ($_SESSION ['authenticated'] == 1) {
                   
                   <span class="highlight"></span>
                   <span class="bar"></span>
-                  <label>Contraseña</label>
-                   
-                </div>
-				
-                
+                  <label>Contraseña</label>                   
+                </div>				               
 				
 				<input id="envia" type="button" value="Ingresar" />
-                
-                
-            <br>
+				<br>
+            
              <a href="recuperar.php">Olvidaste la contraseña ?</a>
 		</form>
 		<!-- jQuery 2.2.3 -->
