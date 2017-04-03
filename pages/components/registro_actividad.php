@@ -7,7 +7,13 @@
 
 <?php
 
-$query = "select id from actividad where  area='8' or area=" . $userinfo->area . "  order by id ";
+
+if($userinfo->area == 23){
+	$query = "select id from actividad where area=" . $userinfo->area . "";
+}else{
+	$query = "select id from actividad where  area='8' or area=" . $userinfo->area . "  order by id ";
+}
+
 $re = $wish->conexion->query ( $query );
 $fila = mysqli_fetch_row ( $re );
 

@@ -94,9 +94,10 @@ class conexion{
 		$query = "UPDATE new_usuario set password='" . $cambiopass . "'WHERE cedula='" . $user_id . "'";
 		$consulta = $this->conexion->query ( $query );
 	}
-	public function registrarPendiente($id_actividad, $user_id, $fecha_inicio, $tiempoReal, $numerotiquete, $descripcion, $id_contrato) {
-		$query = "INSERT INTO registro_actividad (id_actividad,cedula,fecha_inicio,estado,tiempoReal,numerotiquete,descripcion,id_contrato) VALUES ('" . $id_actividad . "','" . $user_id . "','" . $fecha_inicio . "','P','" . $tiempoReal . "','" . $numerotiquete . "','" . $descripcion . "','" . $id_contrato . "')";
+	public function registrarPendiente($id_actividad, $user_id, $fecha_inicio, $tiempoReal, $numerotiquete, $descripcion, $id_contrato, $horaExtra) {
+		$query = "INSERT INTO registro_actividad (id_actividad,cedula,fecha_inicio,estado,tiempoReal,numerotiquete,descripcion,id_contrato,horaExtra) VALUES ('" . $id_actividad . "','" . $user_id . "','" . $fecha_inicio . "','P','" . $tiempoReal . "','" . $numerotiquete . "','" . $descripcion . "','" . $id_contrato . "','" . $horaExtra. "')";
 		$consulta = $this->conexion->query ( $query );
+		
 	}
 	public function actualizarEstado($id, $nuevoEstado) {
 		$query = "update registro_actividad set estado='" . $nuevoEstado . "' where id=" . $id . ";";
@@ -247,25 +248,25 @@ class conexion{
 	
 	// Cantidad de analistas
 	function getColaboradoresFromLider($lider) {
-		$query = "SELECT COUNT(*) FROM new_personas where jefe='$lider'";
+		$query = "SELECT COUNT(*) FROM new_personas where jefe=$lider";
 		$numanalista = $this->conexion->query ( $query );
 		return $numanalista;
 	}
 	// cantidad de actividades de mis analistas
 	function getProductividadColaboradores($lider) {
-		$query = "SELECT sum(a.tiempo_calculado)/count(*) FROM registro_actividad a,new_personas r WHERE a.cedula=r.cedula  and r.jefe='$lider' and MONTH(fecha_inicio) = MONTH(NOW())";
+		$query = "SELECT sum(a.tiempo_calculado)/count(*) FROM registro_actividad a,new_personas r WHERE a.cedula=r.cedula  and r.jefe=$lider and MONTH(fecha_inicio) = MONTH(NOW())";
 		$numeroactividades = $this->conexion->query ( $query );
 		return $numeroactividades;
 	}
 	// Cantidad de contratos
 	function getContratosByLider($lider) {
-		$query = "SELECT COUNT(*) FROM new_lider_contratos where id_lider='$lider'";
+		$query = "SELECT COUNT(*) FROM new_lider_contratos where id_lider=$lider";
 		$contratos = $this->conexion->query ( $query );
 		return $contratos;
 	}
 	// cantidad de pendientes
 	function getPendientesByLider($lider) {
-		$query = "SELECT COUNT(*) FROM registro_actividad a,new_personas r WHERE a.cedula=r.cedula and jefe='$lider' AND a.estado='P'";
+		$query = "SELECT COUNT(*) FROM registro_actividad a,new_personas r WHERE a.cedula=r.cedula and jefe=$lider AND a.estado='P'";
 		$pendientes = $this->conexion->query ( $query );
 		return $pendientes;
 	}

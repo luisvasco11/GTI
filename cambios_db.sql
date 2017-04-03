@@ -66,7 +66,7 @@ CHARACTER SET = utf8 , COLLATE = utf8_unicode_ci ;
 ALTER TABLE `usuario` 
 COLLATE = utf8_unicode_ci ;
 
--- proceso de creación de usuarios
+-- proceso de creaciï¿½n de usuarios
 
 -- 1. renombrar table usuario a usuario_tmp
 ALTER TABLE `usuario` RENAME TO  `usuario_tmp` ;
@@ -203,9 +203,6 @@ order by cantidad
 
 
 
-
-
-
 CREATE VIEW `productividad_historica` AS 
 select `r`.`fecha_inicio` AS `fecha_inicio`,`r`.`tiempoReal` AS `tiempoReal`,`a`.`categoria` AS `categoria`,
 `d`.`correo` AS `correo`,
@@ -216,5 +213,9 @@ select `r`.`fecha_inicio` AS `fecha_inicio`,`r`.`tiempoReal` AS `tiempoReal`,`a`
     on((`d`.`cedula` = `r`.`cedula`))) where (`r`.`estado` = 'F') 
 order by `r`.`estado` desc;
 
+
+
+--Se crea nueva columna en la tabla registro actividad,es para el registro de horas extras 2017/03/29
+ALTER TABLE `registro_actividad` ADD `horaExtra` VARCHAR(5) NOT NULL AFTER `cedula`;
 
 

@@ -6,11 +6,8 @@ $contratos = $wish->getContratosByLider($userinfo->user_id);
 $pendientes = $wish->getPendientesByLider($userinfo->user_id);
 
 
-
 ?>
-
-        <div class="row">
-        
+ <div class="row">        
 	<div class="col-md-3 col-sm-6 col-xs-12">
 		<div class="info-box hover-zoom-effect">
 			<div class="icon bg-aqua">
@@ -26,9 +23,7 @@ $pendientes = $wish->getPendientesByLider($userinfo->user_id);
 							?></div>
 			</div>
 		</div>
-
-	</div>
-	
+	</div>	
 	
 	
 	<div class="col-md-3 col-sm-6 col-xs-12">
@@ -47,10 +42,7 @@ $pendientes = $wish->getPendientesByLider($userinfo->user_id);
 								?></div>
 			</div>
 		</div>
-
 	</div>
-
-
 
 	<div class="col-md-3 col-sm-6 col-xs-12">
 		<div class="info-box hover-zoom-effect">
@@ -68,13 +60,9 @@ $pendientes = $wish->getPendientesByLider($userinfo->user_id);
 									}
 								 ?></a></div>
 			
-			</div>
-			
+			</div>			
 		</div>
-
 	</div>	
-
-
 
 	<div class="col-md-3 col-sm-6 col-xs-12">
 		<div class="info-box hover-zoom-effect">
@@ -93,7 +81,6 @@ $pendientes = $wish->getPendientesByLider($userinfo->user_id);
 								?></a></div>
 			</div>
 		</div>
-
 	</div>	
        
 
