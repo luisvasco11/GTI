@@ -24,7 +24,7 @@ $_PAGE_PERMISSIONS = array(
 		"001" => false,
 		"003" => false,
 		"008" => false,
-		"002" => false,
+		
 	),
 	"3" => array(
 			"005" => false,
